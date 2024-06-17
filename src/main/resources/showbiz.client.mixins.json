@@ -1,0 +1,9 @@
+{
+    "required": true,
+    "package": "flooferland.showbiz.client.mixin",
+    "compatibilityLevel": "JAVA_21",
+    "server": [],
+    "injectors": {
+        "defaultRequire": 1
+    }
+}

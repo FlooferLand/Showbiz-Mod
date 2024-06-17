@@ -3,8 +3,11 @@ plugins {
 	id "maven-publish"
 }
 
-version = project.mod_version
+// Settings and variables
+version = project.mod_version + "-" + project.minecraft_version
 group = project.maven_group
+int minJavaVersion = Integer.parseInt(project.min_java_version)
+archivesBaseName = archives_base_name
 
 base {
 	archivesName = project.archives_base_name
@@ -12,6 +15,21 @@ base {
 
 repositories {
 	repositories {
+		// Modrinth package repository
+		exclusiveContent {
+			forRepository {
+				//noinspection ForeignDelegate - Modrinth-recommended
+				maven {
+					name = "Modrinth"
+					url = "https://api.modrinth.com/maven"
+				}
+			}
+			filter {
+				includeGroup "maven.modrinth"
+			}
+		}
+		
+		// GeckoLib - animation & model loading
 		maven {
 			name = "GeckoLib"
 			url "https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/"
@@ -19,13 +37,24 @@ repositories {
 				includeGroup("software.bernie.geckolib")
 			}
 		}
+
+		// Cloth Config
+		maven { url "https://maven.shedaniel.me/" }
+		maven { url "https://maven.terraformersmc.com/releases/" }
 	}
 }
+
+// loom {
+// 	accessWidenerPath = file("src/main/resources/showbiz.accesswidener")
+// }
 
 fabricApi {
 	configureDataGeneration()
 }
 
+// TODO: Make sure isDatagen is only true when running via
+def isServer = ((!project.hasProperty("fabric.dli.env")) || project.property("fabric.dli.env") == "server")
+def isDatagen = project.hasProperty("fabric-api.datagen") && project.property("fabric.dli.env") == "server"
 dependencies {
 	// To change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${minecraft_version}"
@@ -35,28 +64,49 @@ dependencies {
 	// Mod dependencies
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
 	modImplementation "software.bernie.geckolib:geckolib-fabric-${minecraft_version}:${geckolib_version}"
+	modCompileOnly "maven.modrinth:modmenu:${mod_menu_version}"
+	
+	// OGG Vorbis reading library for data generation.
+	// Using this library because Mojang/Fabric"s code prevents usage on server-side for some stupid reason
+	//if (isDatagen) {
+	implementation "ws.schild:jave-all-deps:${jave_version}"
+	//}
 }
 
+// Injecting gradle.properties into other files
 processResources {
-	inputs.property "version", project.version
+	exclude("**/*.bbmodel", "**/*.lnk")
+
+	Map<String, Object> properties = [
+			"version": version,
+			"minecraft_version": minecraft_version,
+			"loader_version": loader_version,
+			"fabric_version": fabric_version,
+			"min_java_version": minJavaVersion.toString(),
+
+			// Mod dependencies
+			"geckolib_version": geckolib_version,
+	]
+	properties.forEach((k, v) -> inputs.property(k, v))
 
 	filesMatching("fabric.mod.json") {
-		expand "version": project.version
+		expand properties
 	}
+	filesMatching(archivesBaseName + ".mixins.json") {
+		expand "archivesBaseName": archivesBaseName
+	}
+
+	duplicatesStrategy = DuplicatesStrategy.WARN
 }
 
+// Java version
 tasks.withType(JavaCompile).configureEach {
-	it.options.release = 21
+	it.options.release = minJavaVersion
 }
-
 java {
-	// Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
-	// if it is present.
-	// If you remove this line, sources will not be generated.
 	withSourcesJar()
-
-	sourceCompatibility = JavaVersion.VERSION_21
-	targetCompatibility = JavaVersion.VERSION_21
+	sourceCompatibility = minJavaVersion - 1
+	targetCompatibility = minJavaVersion - 1
 }
 
 jar {

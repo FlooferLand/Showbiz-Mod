@@ -1,0 +1,14 @@
+{
+    "//": "This hasn't been implemented yet!",
+
+    "FlooferLand": {
+        "roles": ["mod developer", "lead programmer"],
+        "credit": ["Making the mod"]
+    },
+    "Monsterwaill": {
+        "roles": ["3D artist", "project organizer"],
+        "credit": [
+            "TODO: Fill this in at the end of the project"
+        ]
+    }
+}

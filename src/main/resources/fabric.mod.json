@@ -3,35 +3,36 @@
 	"id": "showbiz",
 	"version": "${version}",
 	"name": "Showbiz",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "Unofficial Rock-afire Explosion simulator for Minecraft!\nRock-afire Explosion by Aaron Fechter\nBuilt for ${minecraft_version} (Java ${min_java_version})",
 	"authors": [
-		"Me!"
+		"FlooferLand",
+		"Monsterwaill",
+		"// TODO: FILL IN"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "https://modrinth.com/mod/showbiz",
+		"sources": "https://github.com/FlooferLand/Showbiz-Mod",
+		"issues": "https://github.com/FlooferLand/Showbiz-Mod/issues"
 	},
-	"license": "CC0-1.0",
+	"license": "GPL3",
 	"icon": "assets/showbiz/icon.png",
 	"environment": "*",
 	"entrypoints": {
-		"main": [
-			"flooferland.showbiz.Showbiz"
-		],
-		"fabric-datagen": [
-			"flooferland.showbiz.ShowbizDataGenerator"
-		]
+		"main": ["flooferland.showbiz.ShowbizMod"],
+		"client": ["flooferland.showbiz.client.ShowbizClient"],
+		"server": ["flooferland.showbiz.backend.ShowbizServer"],
+		"fabric-datagen": ["flooferland.showbiz.datagen.ShowbizDataGenerator"],
+		"modmenu": ["flooferland.showbiz.client.ShowbizModMenu"]
 	},
 	"mixins": [
-		"showbiz.mixins.json"
+		"showbiz.server.mixins.json",
+		"showbiz.client.mixins.json"
 	],
 	"depends": {
-		"fabricloader": ">=0.15.11",
-		"minecraft": "~1.21",
-		"java": ">=21",
-		"fabric-api": "*"
-	},
-	"suggests": {
-		"another-mod": "*"
+		"fabricloader": ">=${loader_version}",
+		"minecraft": ">=${minecraft_version}",
+		"java": ">=${min_java_version}",
+		"fabric-api": ">=${fabric_version}",
+		"geckolib": ">=${geckolib_version}"
 	}
 }

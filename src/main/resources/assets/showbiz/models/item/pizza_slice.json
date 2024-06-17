@@ -1,0 +1,8 @@
+{
+	"parent": "item/generated",
+	"textures": {
+		"layer0": "showbiz:item/pizza_slice/base",
+		"layer1": "showbiz:item/pizza_slice/veggies",
+		"layer2": "showbiz:item/pizza_slice/pepperoni"
+	}
+}

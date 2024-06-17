@@ -1,0 +1,25 @@
+name: Release mod
+
+on:
+  release:
+    tags:
+      - "v*.*.*" 
+    types:
+      - created
+
+jobs:
+  build:
+    name: Run build file
+    uses: ./.github/workflows/build.yml
+  release:
+    name: Release/deploy mod jars
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: build/libs/*
+          make_latest: true
+          fail_on_unmatched_files: true

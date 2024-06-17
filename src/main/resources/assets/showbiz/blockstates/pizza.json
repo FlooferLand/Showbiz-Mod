@@ -1,0 +1,8 @@
+{
+	"variants": {
+		"slices_left=4": { "model": "showbiz:block/pizza_4slice" },
+		"slices_left=3": { "model": "showbiz:block/pizza_3slice" },
+		"slices_left=2": { "model": "showbiz:block/pizza_2slice" },
+		"slices_left=1": { "model": "showbiz:block/pizza_1slice" }
+	}
+}

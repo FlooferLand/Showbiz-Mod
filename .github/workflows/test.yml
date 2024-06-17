@@ -1,0 +1,18 @@
+# Automatically build and test the project and run any configured tests for every push
+# and submitted pull request. This can help catch issues that only occur on
+# certain platforms or Java versions, and provides a first line of defence
+# against bad commits.
+
+# TODO
+
+name: Test mod
+on:
+  - workflow_dispatch
+  - workflow_call
+  - pull_request
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "UNIMPLEMENTED"

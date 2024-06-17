@@ -1,0 +1,34 @@
+{
+  "pneumatic_fire": {
+    "length": 0.32,
+    "sounds": [
+      "showbiz:mechanical/pneumatic_fire"
+    ],
+    "stream": false,
+    "subtitle": "subtitle.showbiz.pneumatic_fire"
+  },
+  "pneumatic_reset": {
+    "length": 0.29,
+    "sounds": [
+      "showbiz:mechanical/pneumatic_release"
+    ],
+    "stream": false,
+    "subtitle": "subtitle.showbiz.pneumatic_reset"
+  },
+  "tape_click": {
+    "length": 0.46,
+    "sounds": [
+      "showbiz:mechanical/tape_click"
+    ],
+    "stream": false,
+    "subtitle": "subtitle.showbiz.tape_click"
+  },
+  "tape_pull": {
+    "length": 0.46,
+    "sounds": [
+      "showbiz:mechanical/tape_pull"
+    ],
+    "stream": false,
+    "subtitle": "subtitle.showbiz.tape_pull"
+  }
+}
