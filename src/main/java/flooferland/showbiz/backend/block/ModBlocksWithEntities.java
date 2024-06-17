@@ -14,7 +14,8 @@ import software.bernie.geckolib.animatable.GeoAnimatable;
 import software.bernie.geckolib.animatable.GeoBlockEntity;
 import software.bernie.geckolib.model.GeoModel;
 
-public class ModBlocksAdvanced {
+/** Registry class for blocks that have entities attached to them */
+public class ModBlocksWithEntities {
     // public static final ModComplexBlock<RefrigeratorBlockEntity> REFRIGERATOR = registerBlockWithEntity(
     //         "refrigerator",
     //         new Refrigerator(AbstractBlock.Settings.copy(Blocks.IRON_BLOCK).nonOpaque()),
@@ -51,6 +52,6 @@ public class ModBlocksAdvanced {
     }
     // endregion
 
-    // Keeps classes from being marked as unused
-    public static void registerBlockEntities() {}
+    /** Keeps Java from ignoring the class */
+    public static void registerBlocks() {}
 }

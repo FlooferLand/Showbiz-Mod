@@ -9,6 +9,7 @@ import net.minecraft.util.Identifier;
 
 import java.util.HashMap;
 
+/** Registry class for audio */
 public enum ModSound {
     // region | Sound definitions
     PNEUMATIC_FIRE("pneumatic_fire"),
@@ -40,10 +41,9 @@ public enum ModSound {
         return info.lengthSeconds;
     }
     // endregion
-
-    // region | Registry
+    
+    /** Registers all the sounds by looping through all enum values */
     public static void registerSounds() {
-        // Getting/registering data
         for (ModSound sound : ModSound.values()) {
             if (Registries.SOUND_EVENT.get(sound.id) == null) {
                 sound.event = SoundEvent.of(sound.id);
@@ -51,5 +51,4 @@ public enum ModSound {
             }
         }
     }
-    // endregion
 }

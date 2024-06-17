@@ -2,7 +2,7 @@ package flooferland.showbiz;
 
 import flooferland.showbiz.backend.audio.ModSound;
 import flooferland.showbiz.backend.block.ModBlocks;
-import flooferland.showbiz.backend.block.ModBlocksAdvanced;
+import flooferland.showbiz.backend.block.ModBlocksWithEntities;
 import flooferland.showbiz.backend.entity.ModEntities;
 import flooferland.showbiz.backend.item.ModItems;
 import flooferland.showbiz.backend.resource.SoundsResourceReloader;
@@ -27,11 +27,11 @@ public class ShowbizMod implements ModInitializer {
 				.registerReloadListener(new SoundsResourceReloader());
 		
 		// Registering content; Making sure classes won't get optimized away
-		ModItems.registerItems();
 		ModBlocks.registerBlocks();
+		ModBlocksWithEntities.registerBlocks();
 		ModEntities.registerEntities();
+		ModItems.registerItems();
 		ModSound.registerSounds();
-		ModBlocksAdvanced.registerBlockEntities();
 		
 		LOGGER.info(String.format("The %s mod initialized!", MOD_ID));
 	}

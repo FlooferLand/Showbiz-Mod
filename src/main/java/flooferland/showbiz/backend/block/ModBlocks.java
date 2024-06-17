@@ -11,6 +11,7 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
+/** Registry class for blocks */
 public class ModBlocks {
     public static final Block PIZZA = registerBlock(
             "pizza",
@@ -32,6 +33,7 @@ public class ModBlocks {
         Registry.register(Registries.ITEM, id, new BlockItem(block, settings));
     }
 
+    /** Keeps Java from ignoring the class */
     public static void registerBlocks() {
         //ModBlockFamilies.registerBlockFamilies();
     }

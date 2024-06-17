@@ -7,6 +7,7 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
+/** Registry class for items */
 public class ModItems {
     // region | Misc
     // endregion
@@ -29,7 +30,7 @@ public class ModItems {
     // region | Foods & drinks
     public static final Item PIZZA_SLICE = registerItem(
             "pizza_slice",
-            new Item(new Item.Settings().food(ModFoodComponents.PIZZA_SLICE))
+            new Item(new Item.Settings().food(FoodComponents.PIZZA_SLICE))
     );
     // endregion
 
@@ -41,6 +42,8 @@ public class ModItems {
                 item
         );
     }
-    @SuppressWarnings("unused") public static void registerItems() {}
+    
+    /** Keeps Java from ignoring the class */
+    public static void registerItems() {}
     // endregion
 }

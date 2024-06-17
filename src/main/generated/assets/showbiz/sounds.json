@@ -7,13 +7,13 @@
     "stream": false,
     "subtitle": "subtitle.showbiz.pneumatic_fire"
   },
-  "pneumatic_reset": {
+  "pneumatic_release": {
     "length": 0.29,
     "sounds": [
       "showbiz:mechanical/pneumatic_release"
     ],
     "stream": false,
-    "subtitle": "subtitle.showbiz.pneumatic_reset"
+    "subtitle": "subtitle.showbiz.pneumatic_release"
   },
   "tape_click": {
     "length": 0.46,

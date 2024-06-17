@@ -3,12 +3,21 @@
 
     "FlooferLand": {
         "roles": ["mod developer", "lead programmer"],
-        "credit": ["Making the mod"]
+        "credit": ["Making the mod"],
+        "social": ["https://github.com/FlooferLand"]
     },
     "Monsterwaill": {
         "roles": ["3D artist", "project organizer"],
         "credit": [
             "TODO: Fill this in at the end of the project"
-        ]
+        ],
+        "social": ["https://youtube.com/"]
+    },
+    "MagicMan": {
+        "roles": ["3D artist"],
+        "credit": [
+            "TODO: Fill this in at the end of the project"
+        ],
+        "social": ["https://magicmaan.github.io"]
     }
 }

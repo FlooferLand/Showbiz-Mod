@@ -7,9 +7,12 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-// TODO: CLean up and refactor this code
+// TODO: Clean up and refactor this code
 
-/** Manages ambient sounds */
+/**
+ * Manages looping sounds for block entities. <br/>
+ * Primarily made for block entities and things that have access to their tick methods.
+ */
 public final class AmbientSound {
     public final ModSound sound;
     @Nullable public SoundEvent endSound;
@@ -28,7 +31,7 @@ public final class AmbientSound {
     private AmbientSound(ModSound sound, @Nullable SoundEvent endSound) {
         this.sound = sound;
         this.endSound = endSound;
-        // this.timer = new TickTimer(sound.lengthInTicks());
+        this.timer = new TickTimer(sound.lengthInTicks());
     }
     // endregion
 

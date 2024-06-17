@@ -6,6 +6,10 @@ import net.minecraft.data.client.TextureKey;
 import net.minecraft.util.Identifier;
 import java.util.Optional;
 
+/**
+ * Utilities to create vanilla models, as well as storage for them.
+ * Useful for registering custom models via datagen
+ */
 @SuppressWarnings("unused")
 public class ModModels {
     // public static final Model FLUFFY_BUSH = block("template/fluffy_bush", TextureKey.ALL);
