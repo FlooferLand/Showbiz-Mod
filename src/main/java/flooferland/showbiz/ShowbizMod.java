@@ -2,7 +2,7 @@ package flooferland.showbiz;
 
 import flooferland.showbiz.backend.audio.ModSound;
 import flooferland.showbiz.backend.block.ModBlocks;
-import flooferland.showbiz.backend.block.ModBlocksWithEntities;
+import flooferland.showbiz.backend.blockEntity.ModBlocksWithEntities;
 import flooferland.showbiz.backend.entity.ModEntities;
 import flooferland.showbiz.backend.item.ModItems;
 import flooferland.showbiz.backend.resource.SoundsResourceReloader;

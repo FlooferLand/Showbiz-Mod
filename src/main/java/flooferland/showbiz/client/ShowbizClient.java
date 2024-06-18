@@ -1,7 +1,7 @@
 package flooferland.showbiz.client;
 
 import flooferland.showbiz.backend.entity.ModEntities;
-import flooferland.showbiz.client.block.ModClientBlocksComplex;
+import flooferland.showbiz.client.blockEntity.ModClientBlocksComplex;
 import flooferland.showbiz.client.item.ModItemGroups;
 import net.fabricmc.api.ClientModInitializer;
 
