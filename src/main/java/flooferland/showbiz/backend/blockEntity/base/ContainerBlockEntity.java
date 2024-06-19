@@ -1,5 +1,6 @@
 package flooferland.showbiz.backend.blockEntity.base;
 
+import flooferland.showbiz.client.screen.custom.ContainerBlockScreenHandler;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.block.entity.LootableContainerBlockEntity;
@@ -8,6 +9,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.RegistryWrapper;
@@ -20,7 +22,7 @@ import net.minecraft.world.World;
 
 /** Simplifies the creation of containers, and lets them share functionality */
 public abstract class ContainerBlockEntity extends LootableContainerBlockEntity {
-    protected DefaultedList<ItemStack> inventory;
+    public SimpleInventory inventory;
     private final ViewerCountManager stateManager = new ViewerCountManager(){
         @Override
         protected void onContainerOpen(World world, BlockPos pos, BlockState state) {}
@@ -45,32 +47,33 @@ public abstract class ContainerBlockEntity extends LootableContainerBlockEntity 
         super(blockEntityType, blockPos, blockState);
     }
     
+    // region | Custom utility stuff
     /** Gets the inventory size this container is targeting (ex: <c>return 6;</c>)*/
-    protected abstract int getTargetInvSize(); 
-
-    protected void initialiseInventory(BlockState state) {
-        inventory = DefaultedList.ofSize(getTargetInvSize(), ItemStack.EMPTY);
+    protected abstract int getTargetInvSize();
+    
+    // TODO: Implement this
+    /** Should only return true if the stack can be placed inside this container */
+    protected boolean checkStackCompatible(ItemStack stack) {
+        return true;
+    }
+    // endregion
+    
+    protected void initialiseInventory() {
+        inventory = new SimpleInventory(getTargetInvSize());
     }
 
     @Override
     protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
         super.readNbt(nbt, registryLookup);
 
-        World world = getWorld();
-        if (world != null) {
-            BlockState state = world.getBlockState(pos);
-            initialiseInventory(state);
-        } else {
-            this.inventory = DefaultedList.ofSize(this.size(), ItemStack.EMPTY);
-        }
-
-        Inventories.readNbt(nbt, this.inventory, registryLookup);
+        initialiseInventory();
+        Inventories.readNbt(nbt, this.inventory.heldStacks, registryLookup);
     }
 
     @Override
     protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
         super.writeNbt(nbt, registryLookup);
-        Inventories.writeNbt(nbt, this.inventory, registryLookup);
+        Inventories.writeNbt(nbt, this.inventory.heldStacks, registryLookup);
     }
     
     // region Container stuff
@@ -79,18 +82,17 @@ public abstract class ContainerBlockEntity extends LootableContainerBlockEntity 
         World world = getWorld();
         if (world == null) return null;
 
-        // TODO: Port to a custom screen handler IMMEDIATELY
-        return new GenericContainerScreenHandler(ScreenHandlerType.GENERIC_9X1, syncId, playerInventory, this, 1);
+        return new ContainerBlockScreenHandler(syncId, playerInventory, inventory);
     }
 
     @Override
     protected DefaultedList<ItemStack> getHeldStacks() {
-        return inventory;
+        return inventory.heldStacks;
     }
 
     @Override
     protected void setHeldStacks(DefaultedList<ItemStack> list) {
-        inventory = list;
+        inventory = new SimpleInventory(list.toArray(new ItemStack[0]));
     }
 
     @Override

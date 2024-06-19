@@ -3,7 +3,12 @@ package flooferland.showbiz.backend.blockEntity.custom;
 import flooferland.showbiz.backend.block.custom.ReelHolder;
 import flooferland.showbiz.backend.blockEntity.ModBlocksWithEntities;
 import flooferland.showbiz.backend.blockEntity.base.ContainerBlockEntity;
+import flooferland.showbiz.backend.item.ModItems;
+import flooferland.showbiz.client.screen.custom.ContainerBlockScreenHandler;
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.item.ItemStack;
+import net.minecraft.screen.ScreenHandler;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -20,7 +25,7 @@ public class ReelHolderBlockEntity extends ContainerBlockEntity implements GeoBl
     
     public ReelHolderBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlocksWithEntities.REEL_HOLDER.entity, pos, state);
-        initialiseInventory(state);
+        initialiseInventory();
     }
 
     @Override
@@ -37,7 +42,8 @@ public class ReelHolderBlockEntity extends ContainerBlockEntity implements GeoBl
         BlockState block = world.getBlockState(pos);
         if (!(block.getBlock() instanceof ReelHolder))
             return PlayState.CONTINUE;
-
+        
+        
         // Getting & setting the animation
         // String key = block.get(ReelHolder.CAP_OPEN) ? "open" : "closed";
         // String animation = "animation.generator.cap_"+key;
@@ -56,7 +62,18 @@ public class ReelHolderBlockEntity extends ContainerBlockEntity implements GeoBl
     }
 
     @Override
-    protected int getTargetInvSize() {
+    public int getTargetInvSize() {
         return 9;
+    }
+
+    @Override
+    protected boolean checkStackCompatible(ItemStack stack) {
+        return stack.isOf(ModItems.REEL);
+    }
+    
+    // TODO: Remove this function if we're going with a UI system for this
+    @Override
+    protected ScreenHandler createScreenHandler(int syncId, PlayerInventory playerInventory) {  // Should createMenu be used?
+        return null;
     }
 }

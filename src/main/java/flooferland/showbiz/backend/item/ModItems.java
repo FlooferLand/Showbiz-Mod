@@ -10,6 +10,10 @@ import net.minecraft.util.Identifier;
 /** Registry class for items */
 public class ModItems {
     // region | Misc
+    public static final Item REEL = registerItem(
+            "reel",
+            new Item(new Item.Settings().maxCount(1))
+    );
     // endregion
     
     // region | For recipes
@@ -35,6 +39,9 @@ public class ModItems {
     // endregion
 
     // region | Utility
+    private static Item registerItem(String name) {
+        return registerItem(name, new Item(new Item.Settings()));
+    }
     private static Item registerItem(String name, Item item) {
         return Registry.register(
                 Registries.ITEM,

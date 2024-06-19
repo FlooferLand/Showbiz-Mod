@@ -91,7 +91,8 @@ public final class ShowbizUtil {
             case SOUTH -> Optional.of(new Vec2f((float)x, (float)y));
             case WEST -> Optional.of(new Vec2f((float)z, (float)y));
             case EAST -> Optional.of(new Vec2f((float)(1.0 - z), (float)y));
-            case DOWN, UP -> Optional.empty();
+            case UP -> Optional.of(new Vec2f((float)z, (float)z)); // EXPERIMENTAL
+            case DOWN -> Optional.empty();
         };
     }
 

@@ -2,6 +2,7 @@ package flooferland.showbiz.backend.block;
 
 import flooferland.showbiz.ShowbizMod;
 import flooferland.showbiz.backend.block.custom.Pizza;
+import flooferland.showbiz.backend.block.custom.ReelHolder;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -13,11 +14,13 @@ import net.minecraft.util.Identifier;
 
 /** Registry class for blocks */
 public class ModBlocks {
+    // region | Blocks
     public static final Block PIZZA = registerBlock(
             "pizza",
             new Pizza(AbstractBlock.Settings.copy(Blocks.YELLOW_CARPET)),
             new Item.Settings().maxCount(8)
     );
+    // endregion
     
     // region | Block registry functions
     private static Block registerBlock(String name, Block block) {
