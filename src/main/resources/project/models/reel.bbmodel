@@ -1,0 +1,272 @@
+{
+	"meta": {
+		"format_version": "4.10",
+		"model_format": "java_block",
+		"box_uv": false
+	},
+	"name": "reel",
+	"parent": "",
+	"ambientocclusion": true,
+	"front_gui_light": true,
+	"visible_box": [1, 1, 0],
+	"variable_placeholders": "",
+	"variable_placeholder_buttons": [],
+	"unhandled_root_fields": {},
+	"resolution": {
+		"width": 16,
+		"height": 16
+	},
+	"elements": [
+		{
+			"name": "cube",
+			"box_uv": false,
+			"rescale": false,
+			"locked": false,
+			"render_order": "default",
+			"allow_mirror_modeling": true,
+			"from": [5.5, 0, 5.5],
+			"to": [10.5, 1, 10.5],
+			"autouv": 0,
+			"color": 8,
+			"origin": [8.05337, 0.5, 8.00099],
+			"faces": {
+				"north": {
+					"uv": [6, 0, 11, 1],
+					"texture": 0
+				},
+				"east": {
+					"uv": [6, 2, 11, 3],
+					"texture": 0
+				},
+				"south": {
+					"uv": [6, 4, 11, 5],
+					"texture": 0
+				},
+				"west": {
+					"uv": [6, 6, 11, 7],
+					"texture": 0
+				},
+				"up": {
+					"uv": [5, 5, 0, 0],
+					"texture": 0
+				},
+				"down": {
+					"uv": [5, 6, 0, 11],
+					"texture": 0
+				}
+			},
+			"type": "cube",
+			"uuid": "68ec580d-a006-6276-aee7-7c3a9aeafa03"
+		},
+		{
+			"name": "cube",
+			"box_uv": false,
+			"rescale": false,
+			"locked": false,
+			"render_order": "default",
+			"allow_mirror_modeling": true,
+			"from": [4.73209, 0, 4.78534],
+			"to": [7.73209, 1, 4.78534],
+			"autouv": 0,
+			"color": 8,
+			"rotation": [0, -45, 0],
+			"origin": [8.05337, 0.5, 8.00099],
+			"faces": {
+				"north": {
+					"uv": [6, 8, 9, 9],
+					"texture": 0
+				},
+				"east": {
+					"uv": [0, 12, 0, 13],
+					"texture": 0
+				},
+				"south": {
+					"uv": [6, 10, 9, 11],
+					"texture": 0
+				},
+				"west": {
+					"uv": [12, 0, 12, 1],
+					"texture": 0
+				},
+				"up": {
+					"uv": [4, 12, 1, 12],
+					"texture": 0
+				},
+				"down": {
+					"uv": [15, 2, 12, 2],
+					"texture": 0
+				}
+			},
+			"type": "cube",
+			"uuid": "bdb87122-d250-99cc-7e55-5f0a4a30aea1"
+		},
+		{
+			"name": "cube",
+			"box_uv": false,
+			"rescale": false,
+			"locked": false,
+			"render_order": "default",
+			"allow_mirror_modeling": true,
+			"from": [4.22941, 0, 3.75981],
+			"to": [6.22941, 1, 3.75981],
+			"autouv": 0,
+			"color": 8,
+			"rotation": [0, -22.5, 0],
+			"origin": [8.05337, 0.5, 8.00099],
+			"faces": {
+				"north": {
+					"uv": [10, 8, 12, 9],
+					"texture": 0
+				},
+				"east": {
+					"uv": [12, 3, 12, 4],
+					"texture": 0
+				},
+				"south": {
+					"uv": [10, 10, 12, 11],
+					"texture": 0
+				},
+				"west": {
+					"uv": [5, 12, 5, 13],
+					"texture": 0
+				},
+				"up": {
+					"uv": [14, 5, 12, 5],
+					"texture": 0
+				},
+				"down": {
+					"uv": [8, 12, 6, 12],
+					"texture": 0
+				}
+			},
+			"type": "cube",
+			"uuid": "38db9109-9383-813d-5f1a-b29a72bd2a4e"
+		}
+	],
+	"outliner": [
+		{
+			"name": "Reel",
+			"origin": [3.5, 37, 0.5],
+			"color": 0,
+			"nbt": "{}",
+			"uuid": "1f45d1a4-1877-fb5a-75ac-7f4345fd32aa",
+			"export": true,
+			"mirror_uv": false,
+			"isOpen": true,
+			"locked": false,
+			"visibility": true,
+			"autouv": 0,
+			"children": [
+				"68ec580d-a006-6276-aee7-7c3a9aeafa03",
+				{
+					"name": "group",
+					"origin": [7.4, 0.5, 3.35],
+					"color": 0,
+					"nbt": "{}",
+					"uuid": "62bf5249-5231-c4a3-f9bf-deed70ddada3",
+					"export": true,
+					"mirror_uv": false,
+					"isOpen": true,
+					"locked": false,
+					"visibility": true,
+					"autouv": 0,
+					"children": [
+						{
+							"name": "group",
+							"origin": [6.73726, 0.5, 2.72218],
+							"color": 0,
+							"nbt": "{}",
+							"uuid": "bf3016b6-c093-9610-da93-ffebd9cf303a",
+							"export": true,
+							"mirror_uv": false,
+							"isOpen": true,
+							"locked": false,
+							"visibility": true,
+							"autouv": 0,
+							"children": [
+								"bdb87122-d250-99cc-7e55-5f0a4a30aea1",
+								{
+									"name": "group",
+									"origin": [6.73726, 0.5, 2.72218],
+									"color": 0,
+									"nbt": "{}",
+									"uuid": "2dc3c469-32f2-ec51-3f9d-fa223523c620",
+									"export": true,
+									"mirror_uv": false,
+									"isOpen": true,
+									"locked": false,
+									"visibility": true,
+									"autouv": 0,
+									"children": ["38db9109-9383-813d-5f1a-b29a72bd2a4e"]
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	],
+	"textures": [
+		{
+			"path": "F:\\Minecraft Mods\\Showbiz-Mod\\src\\main\\resources\\assets\\showbiz\\textures\\item\\reel.png",
+			"name": "reel.png",
+			"folder": "item",
+			"namespace": "showbiz",
+			"id": "0",
+			"width": 32,
+			"height": 32,
+			"uv_width": 16,
+			"uv_height": 16,
+			"particle": true,
+			"use_as_default": false,
+			"layers_enabled": false,
+			"sync_to_project": "",
+			"render_mode": "default",
+			"render_sides": "auto",
+			"frame_time": 1,
+			"frame_order_type": "loop",
+			"frame_order": "",
+			"frame_interpolate": false,
+			"visible": true,
+			"internal": true,
+			"saved": true,
+			"uuid": "330af147-1306-d9c1-0f1f-395911cdbf03",
+			"relative_path": "../../assets/showbiz/textures/item/reel.png",
+			"source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAaFJREFUWEftVqGygkAUvRsMBgwEDRaK1UrwGyQYpPgLEsxGswG/gBmLBgNUfoBvoFgMGAwSCIR9c+7MOg7hIQ47Fm65zLKz5+y5Z/euCMNQPp9PejweZJomZ4T6Rh4MBuQ4jsC4bdtyOBzS/X6n/3IURTy/LsTxeJSHw4EXs22bRqMRlWXJRJIkYaD1ek2r1YoXnE6nHxGI4/gzArvdTgKoKAoGWy6XTDqKIjIMg/r9PhPbbrcfLVi34+p/4fs+lwCA8/mcAREgdD6fmRBK4HmeHgJQAKAAREbN8zznMqgxZKVA6x7YbDYSoGrnvV6PoMi7EvDDfr/X4wHXdeV4PKY4jlnud2CUZTab0e12o9PppKcEUCBNU5Yb0isfBEHAJwOEJpPJS4GmJqubL6DA9XplMBxBGA6BMmRZxifDsqyXAq17YLFYSNQdRw4KICPUtzLk5XLR44E6iXT/12KsJqRF1wu6XtBWL1D9v3pP1L0LRFu9QPX/6nuh7l3AN2HXC9roBV97oK1e8LUHmlybOub+vhfo2FWTNTsFOgU6BX6uwB/xtAo/KuusswAAAABJRU5ErkJggg=="
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [-45, 0, -90],
+			"translation": [7.5, 0, 0]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [-45, 0, -90],
+			"translation": [7.5, 0, 0]
+		},
+		"firstperson_righthand": {
+			"rotation": [-45, 14, -90],
+			"translation": [17, 0.75, -5.75],
+			"scale": [2, 2, 2]
+		},
+		"firstperson_lefthand": {
+			"rotation": [-45, 14, 90],
+			"translation": [-11.5, 6, -0.25],
+			"scale": [2, 2, 2]
+		},
+		"ground": {
+			"rotation": [180, 0, 0],
+			"translation": [0, -10.75, 0]
+		},
+		"gui": {
+			"rotation": [45, 129, 45],
+			"translation": [7, 2.75, 0],
+			"scale": [2, 2, 2]
+		},
+		"fixed": {
+			"rotation": [0, -90, 90],
+			"translation": [0, 0, -24],
+			"scale": [3, 3, 3]
+		}
+	}
+}

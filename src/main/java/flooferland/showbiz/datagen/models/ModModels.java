@@ -30,5 +30,9 @@ public class ModModels {
     private static Model block(String parent, String variant, TextureKey ... requiredTextureKeys) {
         return new Model(Optional.of(Identifier.of(ShowbizMod.MOD_ID, "block/" + parent)), Optional.of(variant), requiredTextureKeys);
     }
+
+    public final Model getBlockModelFromIdPath(String path, Optional<String> variant, TextureKey texKey) {
+        return new Model(Optional.of(Identifier.of(ShowbizMod.MOD_ID, "block/" + path)), variant, texKey);
+    }
     // endregion
 }

@@ -1,6 +1,7 @@
 package flooferland.showbiz.client.item;
 
 import flooferland.showbiz.backend.block.ModBlocks;
+import flooferland.showbiz.backend.blockEntity.ModBlocksWithEntities;
 import flooferland.showbiz.backend.item.ModItems;
 import flooferland.showbiz.backend.type.AdvancedItemGroup;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
@@ -44,6 +45,7 @@ public class ModItemGroups {
         // region  |  Group (MOD) -> Technical
         ItemGroupEvents.modifyEntriesEvent(TECHNICAL_GROUP.key)
                 .register(entries -> {
+                    entries.add(ModBlocksWithEntities.REEL_HOLDER.item);
                     entries.add(Items.COPPER_INGOT);
                 });
         // endregion

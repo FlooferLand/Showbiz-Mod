@@ -1,6 +1,7 @@
 package flooferland.showbiz.datagen.providers;
 
 import flooferland.showbiz.ShowbizMod;
+import flooferland.showbiz.backend.blockEntity.ModBlocksWithEntities;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.data.client.*;
@@ -17,13 +18,9 @@ public class ModModelProvider extends FabricModelProvider {
     public void generateBlockStateModels(BlockStateModelGenerator generator) {
         // generator.registerSimpleState(ModBlocks.EXAMPLE);
     }
-    
-    public final Model getBlockModelFromIdPath(String path, Optional<String> variant, TextureKey texKey) {
-        return new Model(Optional.of(Identifier.of(ShowbizMod.MOD_ID, "block/" + path)), variant, texKey);
-    }
 
     @Override
     public void generateItemModels(ItemModelGenerator generator) {
-        // generator.register(ModBlocks.EXAMPLE.asItem(), Models.GENERATED);
+        generator.register(ModBlocksWithEntities.REEL_HOLDER.item, Models.GENERATED);
     }
 }

@@ -4,16 +4,19 @@ import flooferland.showbiz.ShowbizMod;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.enums.DoubleBlockHalf;
 import net.minecraft.component.ComponentMap;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
+import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -90,6 +93,19 @@ public final class ShowbizUtil {
             case EAST -> Optional.of(new Vec2f((float)(1.0 - z), (float)y));
             case DOWN, UP -> Optional.empty();
         };
+    }
+
+    /** Scatters items when the block is destroyed */
+    public static void scatterInventoryOnDestroy(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
+        if (state.getBlock() == newState.getBlock()) return;
+
+        BlockEntity blockEntity = world.getBlockEntity(pos);
+        if (blockEntity instanceof Inventory inventory) {
+            ItemScatterer.spawn(world, pos, inventory);
+
+            // FIXME?: This might not work, `state.getBlock()` should be `this` (method might need an argument passing in the block)
+            world.updateComparators(pos, state.getBlock());
+        }
     }
 
     /** Destroys the other top/bottom half of a DoubleBlockHalf block */

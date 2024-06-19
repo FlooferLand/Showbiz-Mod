@@ -3,6 +3,7 @@ package flooferland.showbiz.client;
 import flooferland.showbiz.backend.entity.ModEntities;
 import flooferland.showbiz.client.blockEntity.ModClientBlocksComplex;
 import flooferland.showbiz.client.item.ModItemGroups;
+import flooferland.showbiz.client.screen.ModScreenHandlers;
 import net.fabricmc.api.ClientModInitializer;
 
 public class ShowbizClient implements ClientModInitializer {
@@ -13,5 +14,6 @@ public class ShowbizClient implements ClientModInitializer {
         ModItemGroups.registerItemGroups();
         ModEntities.registerClientEntities();
         ModClientBlocksComplex.registerClientBlockEntities();
+        ModScreenHandlers.registerScreenHandlers();
     }
 }
