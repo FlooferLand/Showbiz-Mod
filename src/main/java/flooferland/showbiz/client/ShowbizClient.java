@@ -10,7 +10,7 @@ public class ShowbizClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         // TODO: Register client-side config here
-
+        
         ModItemGroups.registerItemGroups();
         ModEntities.registerClientEntities();
         ModClientBlocksComplex.registerClientBlockEntities();

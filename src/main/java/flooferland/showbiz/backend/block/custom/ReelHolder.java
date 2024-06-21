@@ -5,11 +5,13 @@ import flooferland.showbiz.backend.block.base.ContainerBlock;
 import flooferland.showbiz.backend.blockEntity.custom.ReelHolderBlockEntity;
 import flooferland.showbiz.backend.item.ModItems;
 import flooferland.showbiz.backend.util.ShowbizUtil;
+import flooferland.showbiz.client.screen.ModScreenHandlers;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Properties;
@@ -24,6 +26,7 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 import java.util.function.Function;
@@ -38,10 +41,22 @@ public class ReelHolder extends ContainerBlock {
     }
 
     @Override
+    public BlockRenderType getRenderType(BlockState state) {
+        return BlockRenderType.ENTITYBLOCK_ANIMATED;
+    }
+
+    @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         super.appendProperties(builder);
         builder.add(FACING);
     }
+
+
+    //@Nullable
+    //@Override
+    //protected NamedScreenHandlerFactory createScreenHandlerFactory(BlockState state, World world, BlockPos pos) {
+    //    return (NamedScreenHandlerFactory) ModScreenHandlers.CONTAINER_BLOCK_SCREEN_HANDLER;
+    //}
 
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
@@ -102,7 +117,7 @@ public class ReelHolder extends ContainerBlock {
     // endregion
 
     // TODO: Remove this function if we're going with a UI system for this
-    @Override
+    /*@Override
     protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (hand != Hand.MAIN_HAND || world.isClient) return ItemActionResult.CONSUME;
         
@@ -125,13 +140,14 @@ public class ReelHolder extends ContainerBlock {
         }
         float pad = 0.05F;
         int hitIndex = 0;
-        for (float bound = 0; bound < 1.0F; bound += (1.0F / maxReelCount)) {
+        for (float bound = 0; bound < 1.0F - pad; bound += (1.0F / maxReelCount)) {
             float hitLoc = hitPos.get().x - pad;
             if (hitLoc > bound - pad && hitLoc < bound + pad) {
                 break;
             }
             hitIndex++;
         }
+        hitIndex = Math.clamp(hitIndex, 0, maxReelCount-1);
 
         // Adding / removing reels
         {
@@ -155,7 +171,7 @@ public class ReelHolder extends ContainerBlock {
                 blockEntity.inventory.setStack(hitIndex, mainHandStack);
             }
         }
-        
+
         return ItemActionResult.SUCCESS;
-    }
+    }*/
 }

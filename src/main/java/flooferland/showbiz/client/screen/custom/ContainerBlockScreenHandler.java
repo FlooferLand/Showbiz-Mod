@@ -20,40 +20,45 @@ import org.jetbrains.annotations.Nullable;
  * Some code stolen from <a href="https://fabricmc.net/wiki/tutorial:containers">tutorial:containers</a>
  */
 public class ContainerBlockScreenHandler extends ScreenHandler {
-    private final Inventory inventory;
+    private final ContainerBlockEntity blockEntity;
     
-    public ContainerBlockScreenHandler(int syncId, PlayerInventory playerInventory, Inventory blockInventory) {
+    public ContainerBlockScreenHandler(int syncId, PlayerInventory inventory, ContainerBlockEntity.CodecData data) {
+        this(syncId, inventory, (ContainerBlockEntity) inventory.player.getWorld().getBlockEntity(data.pos()), new ArrayPropertyDelegate(2));
+    }
+    
+    public ContainerBlockScreenHandler(int syncId, PlayerInventory playerInventory, ContainerBlockEntity blockEntity, PropertyDelegate delegate) {
         super(null, syncId);
+        int x, y;
         
-        checkSize(blockInventory, 2);
-        this.inventory = blockInventory;
-        this.inventory.onOpen(playerInventory.player);
-        
-        // Creating Slots for GUI. A Slot is essentially a corresponding from inventory ItemStacks to the GUI position.
-        int i, j;
+        checkSize(blockEntity.inventory, 2);
+        this.blockEntity = blockEntity;
+        this.blockEntity.inventory.onOpen(playerInventory.player);
 
-        // Chest Inventory 
-        for (i = 0; i < 6; i++) {
-            for (j = 0; j < 9; j++) {
-                this.addSlot(new Slot(inventory, i * 9 + j, 8 + j * 18, 18 + i * 18));
+        // Creating slots bellow --
+        
+        // Chest Inventory
+        for (y = 0; y < 6; y++) {
+            for (x = 0; x < 9; x++) {
+                this.addSlot(new Slot(blockEntity.inventory, y * 9 + x, 8 + x * 18, 18 + y * 18));
             }
         }
 
         // Player Inventory (27 storage + 9 hotbar)
-        for (i = 0; i < 3; i++) {
-            for (j = 0; j < 9; j++) {
-                this.addSlot(new Slot(playerInventory, i * 9 + j + 9, 8 + j * 18, 18 + i * 18 + 103 + 18));
+        for (y = 0; y < 3; y++) {
+            for (x = 0; x < 9; x++) {
+                this.addSlot(new Slot(playerInventory, y * 9 + x + 9, 8 + x * 18, 18 + y * 18 + 103 + 18));
             }
         }
-
-        for (j = 0; j < 9; j++) {
-            this.addSlot(new Slot(playerInventory, j, 8 + j * 18, 18 + 161 + 18));
+        
+        // Player hotbar
+        for (x = 0; x < 9; x++) {
+            this.addSlot(new Slot(playerInventory, x, 8 + x * 18, 18 + 161 + 18));
         }
     }
 
     @Override
     public boolean canUse(PlayerEntity player) {
-        return this.inventory.canPlayerUse(player);
+        return blockEntity.inventory.canPlayerUse(player);
     }
     
     @Override
@@ -63,11 +68,11 @@ public class ContainerBlockScreenHandler extends ScreenHandler {
         if (slot.hasStack()) {
             ItemStack originalStack = slot.getStack();
             newStack = originalStack.copy();
-            if (invSlot < this.inventory.size()) {
-                if (!this.insertItem(originalStack, this.inventory.size(), this.slots.size(), true)) {
+            if (invSlot < blockEntity.inventory.size()) {
+                if (!this.insertItem(originalStack, blockEntity.inventory.size(), this.slots.size(), true)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (!this.insertItem(originalStack, 0, this.inventory.size(), false)) {
+            } else if (!this.insertItem(originalStack, 0, blockEntity.inventory.size(), false)) {
                 return ItemStack.EMPTY;
             }
 
@@ -79,5 +84,13 @@ public class ContainerBlockScreenHandler extends ScreenHandler {
         }
 
         return newStack;
+    }
+
+    @Override
+    public boolean canInsertIntoSlot(ItemStack stack, Slot slot) {
+        if (slot.inventory == blockEntity.inventory) {
+            return blockEntity.checkStackCompatible(stack);
+        }
+        return true;
     }
 }

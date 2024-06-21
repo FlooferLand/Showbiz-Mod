@@ -21,6 +21,6 @@ public class ModModelProvider extends FabricModelProvider {
 
     @Override
     public void generateItemModels(ItemModelGenerator generator) {
-        generator.register(ModBlocksWithEntities.REEL_HOLDER.item, Models.GENERATED);
+        // generator.register(ModBlocksWithEntities.REEL_HOLDER.item, Models.GENERATED);
     }
 }

@@ -10,11 +10,15 @@ import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.block.entity.LootableContainerBlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.util.*;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.function.BiPredicate;
 
 /** Simplifies the creation of containers, and lets them share functionality */
 public class ContainerBlock extends BlockWithEntity {
@@ -39,10 +43,11 @@ public class ContainerBlock extends BlockWithEntity {
 
     @Override
     protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
-        // Object interaction
+        if (world.isClient) return ActionResult.PASS;
+        
         BlockEntity blockEntity = world.getBlockEntity(pos);
-        if (blockEntity instanceof ReelHolderBlockEntity) {
-            player.openHandledScreen((ReelHolderBlockEntity) blockEntity);
+        if (blockEntity instanceof ReelHolderBlockEntity reelHolder) {
+            player.openHandledScreen(reelHolder);
             return ActionResult.SUCCESS;
         }
 

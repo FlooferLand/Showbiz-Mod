@@ -2,6 +2,7 @@ package flooferland.showbiz.backend.blockEntity.base;
 
 import flooferland.showbiz.client.screen.custom.ContainerBlockScreenHandler;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.block.entity.LootableContainerBlockEntity;
 import net.minecraft.block.entity.ViewerCountManager;
@@ -12,13 +13,17 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.network.RegistryByteBuf;
+import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.screen.GenericContainerScreenHandler;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerType;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
 /** Simplifies the creation of containers, and lets them share functionality */
 public abstract class ContainerBlockEntity extends LootableContainerBlockEntity {
@@ -42,6 +47,10 @@ public abstract class ContainerBlockEntity extends LootableContainerBlockEntity 
             return false;
         }
     };
+    public record CodecData(BlockPos pos) {
+        public static final PacketCodec<RegistryByteBuf, CodecData> PACKET_CODEC =
+                PacketCodec.tuple(BlockPos.PACKET_CODEC, CodecData::pos, CodecData::new);
+    }
     
     protected ContainerBlockEntity(BlockEntityType<?> blockEntityType, BlockPos blockPos, BlockState blockState) {
         super(blockEntityType, blockPos, blockState);
@@ -53,7 +62,7 @@ public abstract class ContainerBlockEntity extends LootableContainerBlockEntity 
     
     // TODO: Implement this
     /** Should only return true if the stack can be placed inside this container */
-    protected boolean checkStackCompatible(ItemStack stack) {
+    public boolean checkStackCompatible(ItemStack stack) {
         return true;
     }
     // endregion
@@ -78,11 +87,14 @@ public abstract class ContainerBlockEntity extends LootableContainerBlockEntity 
     
     // region Container stuff
     @Override
-    protected ScreenHandler createScreenHandler(int syncId, PlayerInventory playerInventory) {  // Should createMenu be used?
-        World world = getWorld();
-        if (world == null) return null;
+    protected ScreenHandler createScreenHandler(int syncId, PlayerInventory playerInventory) {
+        return new ContainerBlockScreenHandler(syncId, playerInventory, new CodecData(getPos()));
+    }
 
-        return new ContainerBlockScreenHandler(syncId, playerInventory, inventory);
+    @Nullable
+    @Override
+    public ScreenHandler createMenu(int syncId, PlayerInventory playerInventory, PlayerEntity playerEntity) {
+        return new ContainerBlockScreenHandler(syncId, playerInventory, new CodecData(getPos()));
     }
 
     @Override
@@ -100,6 +112,7 @@ public abstract class ContainerBlockEntity extends LootableContainerBlockEntity 
         return inventory.size();
     }
     // endregion
+    
 
     // region Basic container stuff
     @Override
