@@ -1,0 +1,82 @@
+{
+	"textures": {
+		"0": "showbiz:item/reel",
+		"particle": "showbiz:item/reel"
+	},
+	"elements": [
+		{
+			"from": [7.13045, 7.4, 7.82193],
+			"to": [9.63045, 8.6, 7.99693],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8.63045, 8, 7.84693]},
+			"faces": {
+				"north": {"uv": [7, 0, 11, 1], "rotation": 180, "texture": "#0"},
+				"east": {"uv": [10.5, 0, 11, 1], "rotation": 90, "texture": "#0"},
+				"south": {"uv": [6, 0, 11, 1], "texture": "#0"},
+				"west": {"uv": [6, 0, 11, 1], "rotation": 270, "texture": "#0"},
+				"up": {"uv": [6, 0, 11, 1], "texture": "#0"},
+				"down": {"uv": [6, 0, 11, 1], "rotation": 180, "texture": "#0"}
+			}
+		},
+		{
+			"from": [4.82179, 7.4, 7.36271],
+			"to": [7.22179, 8.6, 7.53771],
+			"rotation": {"angle": -22.5, "axis": "y", "origin": [6.02179, 8, 7.38771]},
+			"faces": {
+				"north": {"uv": [6, 0, 10, 1], "rotation": 180, "texture": "#0"},
+				"east": {"uv": [6, 0, 10, 1], "rotation": 90, "texture": "#0"},
+				"south": {"uv": [6, 0, 10, 1], "texture": "#0"},
+				"west": {"uv": [6, 0, 6.5, 1], "rotation": 270, "texture": "#0"},
+				"up": {"uv": [6, 0, 10, 1], "texture": "#0"},
+				"down": {"uv": [6, 0, 10, 1], "rotation": 180, "texture": "#0"}
+			}
+		}
+	],
+	"gui_light": "front",
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [-20, 0, -90],
+			"translation": [0, 0.75, 1]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [-45, 0, -90],
+			"translation": [0, 1.25, 0]
+		},
+		"firstperson_righthand": {
+			"rotation": [-45, 14, -90],
+			"translation": [9, 0.75, -5.75],
+			"scale": [2, 2, 2]
+		},
+		"firstperson_lefthand": {
+			"rotation": [-45, 14, 90],
+			"translation": [2.5, 5.5, -3.25],
+			"scale": [2, 2, 2]
+		},
+		"ground": {
+			"rotation": [180, 0, 0],
+			"translation": [0, -3, 0]
+		},
+		"gui": {
+			"rotation": [-118.04, 18.92, -163.05],
+			"translation": [-1.5, 1.5, 0],
+			"scale": [3, 3, 3]
+		},
+		"head": {
+			"rotation": [-90, 0, -90],
+			"translation": [0, 7.25, -3.25],
+			"scale": [4, 4, 4]
+		},
+		"fixed": {
+			"rotation": [-86.17, -29.54, 7.79],
+			"scale": [3, 3, 3]
+		}
+	},
+	"groups": [
+		{
+			"name": "MagneticTape",
+			"origin": [3.5, 37, 0.5],
+			"color": 0,
+			"nbt": "{}",
+			"children": [0, 1]
+		}
+	]
+}

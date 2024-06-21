@@ -1,6 +1,7 @@
 package flooferland.showbiz.backend.item;
 
 import flooferland.showbiz.ShowbizMod;
+import flooferland.showbiz.backend.item.custom.ReelItem;
 import net.minecraft.component.type.FoodComponent;
 import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
@@ -10,13 +11,20 @@ import net.minecraft.util.Identifier;
 /** Registry class for items */
 public class ModItems {
     // region | Misc
-    public static final Item REEL = registerItem(
+    public static final ReelItem REEL = registerItem(
             "reel",
-            new Item(new Item.Settings().maxCount(1))
+            new ReelItem(new Item.Settings().maxCount(1))
     );
     // endregion
     
-    // region | For recipes
+    // region | For technical recipes
+    public static final Item MAGNETIC_TAPE = registerItem(
+            "magnetic_tape",
+            new Item(new Item.Settings().food(new FoodComponent.Builder().nutrition(0).snack().build()))
+    );
+    // endregion
+    
+    // region | For food recipes
     public static final Item PIE_CRUST = registerItem(
             "pie_crust",
             new Item(new Item.Settings().food(new FoodComponent.Builder().nutrition(1).snack().build()))
@@ -39,10 +47,11 @@ public class ModItems {
     // endregion
 
     // region | Utility
-    private static Item registerItem(String name) {
-        return registerItem(name, new Item(new Item.Settings()));
+    private static <T extends Item> T registerItem(String name) {
+        //noinspection unchecked
+        return registerItem(name, (T) new Item(new Item.Settings()));
     }
-    private static Item registerItem(String name, Item item) {
+    private static <T extends Item> T registerItem(String name, T item) {
         return Registry.register(
                 Registries.ITEM,
                 Identifier.of(ShowbizMod.MOD_ID, name),

@@ -1,6 +1,7 @@
 package flooferland.showbiz.datagen.providers;
 
 import flooferland.showbiz.backend.block.ModBlocks;
+import flooferland.showbiz.backend.blockEntity.ModBlocksWithEntities;
 import flooferland.showbiz.backend.item.ModItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
@@ -24,6 +25,32 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 
     @Override
     public void generate(RecipeExporter exporter) {
+        // region | Reels and tapes
+        // Magnetic tape
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.MAGNETIC_TAPE, 1)
+                .input(Items.DRIED_KELP)
+                .input(Items.IRON_NUGGET)
+                .input(Items.COPPER_INGOT)
+                .criterion(hasItem(Items.KELP), conditionsFromItem(Items.KELP))
+                .offerTo(exporter, Identifier.of(getRecipeName(ModItems.MAGNETIC_TAPE)));
+
+        // Reels
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.REEL, 1)
+                .input(ModItems.MAGNETIC_TAPE)
+                .input(ItemTags.WOODEN_SLABS)
+                .input(Items.IRON_NUGGET)
+                .criterion(hasItem(Items.IRON_INGOT), conditionsFromItem(Items.IRON_INGOT))
+                .offerTo(exporter, Identifier.of(getRecipeName(ModItems.REEL)));
+        // Reels
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.REEL, 1)
+                .pattern("   ")
+                .pattern("_ _")
+                .pattern("___")
+                .input('_', ItemTags.WOODEN_SLABS)
+                .criterion(hasItem(Items.OAK_SLAB), conditionsFromItem(Items.OAK_SLAB))
+                .offerTo(exporter, Identifier.of(getRecipeName(ModBlocksWithEntities.REEL_HOLDER.item)));
+        // endregion
+        
         // region | Pizza recipe
         // TODO: Maybe move to a custom crafting system; don't use a crafting table for food because that's weird.
         {

@@ -39,15 +39,15 @@ public class ModItemGroups {
                 .register(entries -> {
                     entries.add(ModItems.PIZZA_SLICE);
                     entries.add(ModBlocks.PIZZA);
-                    entries.add(ModItems.REEL);
                 });
         // endregion
 
         // region  |  Group (MOD) -> Technical
         ItemGroupEvents.modifyEntriesEvent(TECHNICAL_GROUP.key)
                 .register(entries -> {
+                    entries.add(ModItems.MAGNETIC_TAPE);
+                    entries.add(ModItems.REEL);
                     entries.add(ModBlocksWithEntities.REEL_HOLDER.item);
-                    entries.add(Items.COPPER_INGOT);
                 });
         // endregion
 

@@ -3,8 +3,10 @@ package flooferland.showbiz;
 import flooferland.showbiz.backend.audio.ModSound;
 import flooferland.showbiz.backend.block.ModBlocks;
 import flooferland.showbiz.backend.blockEntity.ModBlocksWithEntities;
+import flooferland.showbiz.backend.component.ModDataComponents;
 import flooferland.showbiz.backend.entity.ModEntities;
 import flooferland.showbiz.backend.item.ModItems;
+import flooferland.showbiz.backend.recipe.ModRecipes;
 import flooferland.showbiz.backend.resource.SoundsResourceReloader;
 import net.fabricmc.api.ModInitializer;
 
@@ -32,6 +34,8 @@ public class ShowbizMod implements ModInitializer {
 		ModEntities.registerEntities();
 		ModItems.registerItems();
 		ModSound.registerSounds();
+		ModDataComponents.registerDataComponents();
+		ModRecipes.registerRecipes();
 		
 		LOGGER.info(String.format("The %s mod initialized!", MOD_ID));
 	}

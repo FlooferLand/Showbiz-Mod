@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "_": {
+      "tag": "minecraft:wooden_slabs"
+    }
+  },
+  "pattern": [
+    "   ",
+    "_ _",
+    "___"
+  ],
+  "result": {
+    "count": 1,
+    "id": "showbiz:reel"
+  }
+}
