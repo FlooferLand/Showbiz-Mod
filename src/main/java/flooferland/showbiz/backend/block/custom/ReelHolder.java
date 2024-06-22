@@ -1,35 +1,18 @@
 package flooferland.showbiz.backend.block.custom;
 
-import com.google.common.collect.ImmutableMap;
 import flooferland.showbiz.backend.block.base.ContainerBlock;
 import flooferland.showbiz.backend.blockEntity.custom.ReelHolderBlockEntity;
-import flooferland.showbiz.backend.item.ModItems;
-import flooferland.showbiz.backend.util.ShowbizUtil;
-import flooferland.showbiz.client.screen.ModScreenHandlers;
 import net.minecraft.block.*;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.item.ItemStack;
-import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Properties;
-import net.minecraft.text.Text;
 import net.minecraft.util.*;
-import net.minecraft.util.collection.DefaultedList;
-import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Vec2f;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
-
-import java.util.Optional;
-import java.util.function.Function;
 
 public class ReelHolder extends ContainerBlock {
     public static final int maxReelCount = 7;
@@ -50,13 +33,6 @@ public class ReelHolder extends ContainerBlock {
         super.appendProperties(builder);
         builder.add(FACING);
     }
-
-
-    //@Nullable
-    //@Override
-    //protected NamedScreenHandlerFactory createScreenHandlerFactory(BlockState state, World world, BlockPos pos) {
-    //    return (NamedScreenHandlerFactory) ModScreenHandlers.CONTAINER_BLOCK_SCREEN_HANDLER;
-    //}
 
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
@@ -116,7 +92,7 @@ public class ReelHolder extends ContainerBlock {
     }
     // endregion
 
-    // TODO: Remove this function if we're going with a UI system for this
+    // TODO: Rewrite this code to go with a more chiseled bookshelf interaction approach for reel holders
     /*@Override
     protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (hand != Hand.MAIN_HAND || world.isClient) return ItemActionResult.CONSUME;

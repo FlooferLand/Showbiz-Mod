@@ -1,11 +1,9 @@
 package flooferland.showbiz.backend.blockEntity.base;
 
 import flooferland.showbiz.client.screen.custom.ContainerBlockScreenHandler;
+import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.block.entity.LootableContainerBlockEntity;
-import net.minecraft.block.entity.ViewerCountManager;
+import net.minecraft.block.entity.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
@@ -16,17 +14,18 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.RegistryByteBuf;
 import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.screen.GenericContainerScreenHandler;
-import net.minecraft.screen.ScreenHandler;
-import net.minecraft.screen.ScreenHandlerType;
+import net.minecraft.screen.*;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
+// TODO: Separate parts into an abstract class or smth, so I wouldn't have to set up CODEC and cache every time.
+//       Move the tick function into that class. its called by the block entity's normal block (getTicker) to make the block entities capable of ticking
+
 /** Simplifies the creation of containers, and lets them share functionality */
-public abstract class ContainerBlockEntity extends LootableContainerBlockEntity {
+public abstract class ContainerBlockEntity extends LockableContainerBlockEntity implements ExtendedScreenHandlerFactory<ContainerBlockEntity.CodecData> {
     public SimpleInventory inventory;
     private final ViewerCountManager stateManager = new ViewerCountManager(){
         @Override
@@ -47,6 +46,7 @@ public abstract class ContainerBlockEntity extends LootableContainerBlockEntity 
             return false;
         }
     };
+    
     public record CodecData(BlockPos pos) {
         public static final PacketCodec<RegistryByteBuf, CodecData> PACKET_CODEC =
                 PacketCodec.tuple(BlockPos.PACKET_CODEC, CodecData::pos, CodecData::new);
@@ -58,7 +58,7 @@ public abstract class ContainerBlockEntity extends LootableContainerBlockEntity 
     
     // region | Custom utility stuff
     /** Gets the inventory size this container is targeting (ex: <c>return 6;</c>)*/
-    protected abstract int getTargetInvSize();
+    public abstract int getTargetInvSize();
     
     // TODO: Implement this
     /** Should only return true if the stack can be placed inside this container */
@@ -70,7 +70,7 @@ public abstract class ContainerBlockEntity extends LootableContainerBlockEntity 
     protected void initialiseInventory() {
         inventory = new SimpleInventory(getTargetInvSize());
     }
-
+    
     @Override
     protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
         super.readNbt(nbt, registryLookup);
@@ -86,15 +86,20 @@ public abstract class ContainerBlockEntity extends LootableContainerBlockEntity 
     }
     
     // region Container stuff
-    @Override
-    protected ScreenHandler createScreenHandler(int syncId, PlayerInventory playerInventory) {
-        return new ContainerBlockScreenHandler(syncId, playerInventory, new CodecData(getPos()));
-    }
-
     @Nullable
     @Override
     public ScreenHandler createMenu(int syncId, PlayerInventory playerInventory, PlayerEntity playerEntity) {
-        return new ContainerBlockScreenHandler(syncId, playerInventory, new CodecData(getPos()));
+        return new ContainerBlockScreenHandler(syncId, playerInventory, this);
+    }
+
+    @Override
+    protected ScreenHandler createScreenHandler(int syncId, PlayerInventory playerInventory) {
+        return new ContainerBlockScreenHandler(syncId, playerInventory, this);
+    }
+
+    @Override
+    public CodecData getScreenOpeningData(ServerPlayerEntity player) {
+        return new CodecData(getPos());
     }
 
     @Override

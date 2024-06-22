@@ -4,21 +4,20 @@ import com.mojang.serialization.MapCodec;
 import flooferland.showbiz.backend.blockEntity.ModBlocksWithEntities;
 import flooferland.showbiz.backend.blockEntity.custom.ReelHolderBlockEntity;
 import flooferland.showbiz.backend.util.ShowbizUtil;
-import net.minecraft.block.*;
+import flooferland.showbiz.client.screen.ModScreenHandlers;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.BlockWithEntity;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.block.entity.LootableContainerBlockEntity;
+import net.minecraft.block.entity.LockableContainerBlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.screen.NamedScreenHandlerFactory;
-import net.minecraft.util.*;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.function.BiPredicate;
 
 /** Simplifies the creation of containers, and lets them share functionality */
 public class ContainerBlock extends BlockWithEntity {
@@ -26,7 +25,7 @@ public class ContainerBlock extends BlockWithEntity {
     public static ICreateBlockEntity BLOCK_ENTITY_MAKER = null;
 
     public interface ICreateBlockEntity {
-        LootableContainerBlockEntity createBlockEntity(BlockPos pos, BlockState state);
+        LockableContainerBlockEntity createBlockEntity(BlockPos pos, BlockState state);
     }
 
     public ContainerBlock(Settings settings, ICreateBlockEntity blockEntity) {
@@ -39,6 +38,12 @@ public class ContainerBlock extends BlockWithEntity {
     @Override
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
         return BLOCK_ENTITY_MAKER.createBlockEntity(pos, state);
+    }
+
+    @Nullable
+    @Override
+    protected NamedScreenHandlerFactory createScreenHandlerFactory(BlockState state, World world, BlockPos pos) {
+        return (NamedScreenHandlerFactory) ModScreenHandlers.CONTAINER_BLOCK_SCREEN_HANDLER;
     }
 
     @Override
@@ -73,13 +78,8 @@ public class ContainerBlock extends BlockWithEntity {
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World _world, BlockState _state, BlockEntityType<T> type) {
-        return validateTicker(type, ModBlocksWithEntities.REEL_HOLDER.entity,
+        return validateTicker(type, ModBlocksWithEntities.REEL_HOLDER.entity(),
                 (world, pos, state, blockEntity) -> blockEntity.tick(world, pos, state));
-    }
-
-    @Override
-    public BlockRenderType getRenderType(BlockState state) {
-        return BlockRenderType.ENTITYBLOCK_ANIMATED;
     }
 
     @Override
