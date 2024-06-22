@@ -10,8 +10,6 @@ import net.minecraft.util.dynamic.Codecs;
 
 import java.util.function.UnaryOperator;
 
-import static net.minecraft.component.DataComponentTypes.CUSTOM_DATA;
-
 public class ModDataComponents {
     public static final ComponentType<Integer> TAPE_LENGTH = register(
             "tape_length",

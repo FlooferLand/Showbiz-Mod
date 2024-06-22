@@ -1,14 +1,10 @@
 package flooferland.showbiz.client;
 
-import com.terraformersmc.modmenu.api.ConfigScreenFactory;
 import com.terraformersmc.modmenu.api.ModMenuApi;
-import flooferland.showbiz.ShowbizMod;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
 
+@SuppressWarnings("CommentedOutCode")
 @Environment(EnvType.CLIENT)
 public class ShowbizModMenu implements ModMenuApi {
     

@@ -77,9 +77,4 @@ public class BlockEntityItem <T extends BlockEntity & GeoBlockEntity> extends Bl
     public AnimatableInstanceCache getAnimatableInstanceCache() {
         return cache;
     }
-
-    // @Override
-    // public double getTick(Object itemStack) {
-        //return RenderUtils.getCurrentTick();
-    //}
 }

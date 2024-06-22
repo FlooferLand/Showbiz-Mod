@@ -6,7 +6,6 @@ import flooferland.showbiz.backend.blockEntity.custom.ReelHolderBlockEntity;
 import flooferland.showbiz.backend.item.base.BlockEntityItem;
 import flooferland.showbiz.backend.type.AdvancedBlockData;
 import flooferland.showbiz.client.blockEntity.model.ReelHolderModel;
-import flooferland.showbiz.client.item.base.BlockEntityItemRenderer;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.BlockWithEntity;
 import net.minecraft.block.Blocks;

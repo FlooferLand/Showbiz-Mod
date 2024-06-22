@@ -7,6 +7,6 @@ import static flooferland.showbiz.backend.blockEntity.ModBlocksWithEntities.*;
 
 public class ModClientBlocksComplex {
     public static void registerClientBlockEntities() {
-        BlockEntityRendererFactories.register(REEL_HOLDER.entity, ReelHolderRenderer::new);
+        BlockEntityRendererFactories.register(REEL_HOLDER.entity(), ReelHolderRenderer::new);
     }
 }

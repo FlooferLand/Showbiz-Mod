@@ -1,6 +1,5 @@
 package flooferland.showbiz.backend.recipe.custom;
 
-import flooferland.showbiz.ShowbizMod;
 import flooferland.showbiz.backend.item.ModItems;
 import flooferland.showbiz.backend.recipe.ModRecipes;
 import net.minecraft.item.ItemStack;
@@ -8,7 +7,6 @@ import net.minecraft.recipe.*;
 import net.minecraft.recipe.book.CraftingRecipeCategory;
 import net.minecraft.recipe.input.CraftingRecipeInput;
 import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 
 public class ReelAddTapeRecipe extends SpecialCraftingRecipe {

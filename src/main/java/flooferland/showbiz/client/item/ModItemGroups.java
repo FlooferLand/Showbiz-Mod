@@ -47,7 +47,7 @@ public class ModItemGroups {
                 .register(entries -> {
                     entries.add(ModItems.MAGNETIC_TAPE);
                     entries.add(ModItems.REEL);
-                    entries.add(ModBlocksWithEntities.REEL_HOLDER.item);
+                    entries.add(ModBlocksWithEntities.REEL_HOLDER.item());
                 });
         // endregion
 

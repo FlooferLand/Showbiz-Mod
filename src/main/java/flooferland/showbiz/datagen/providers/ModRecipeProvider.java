@@ -8,14 +8,13 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.data.server.recipe.*;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
-import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
-import java.util.List;
+
 import java.util.concurrent.CompletableFuture;
 
 public class ModRecipeProvider extends FabricRecipeProvider {
@@ -48,7 +47,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .pattern("___")
                 .input('_', ItemTags.WOODEN_SLABS)
                 .criterion(hasItem(Items.OAK_SLAB), conditionsFromItem(Items.OAK_SLAB))
-                .offerTo(exporter, Identifier.of(getRecipeName(ModBlocksWithEntities.REEL_HOLDER.item)));
+                .offerTo(exporter, Identifier.of(getRecipeName(ModBlocksWithEntities.REEL_HOLDER.item())));
         // endregion
         
         // region | Pizza recipe
