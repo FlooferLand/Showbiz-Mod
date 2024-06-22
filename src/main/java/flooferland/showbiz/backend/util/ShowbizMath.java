@@ -5,7 +5,7 @@ package flooferland.showbiz.backend.util;
  */
 @SuppressWarnings("unused")
 public class ShowbizMath {
-    public static double GallonToLitre(double gallon) {
+    public static double gallonToLitre(double gallon) {
         return gallon * 4.546;
     }
 }
