@@ -75,16 +75,16 @@ public class LengthUnit {
     public LengthUnit mul(LengthUnit other) {
         return new LengthUnit(lengthCentimeters * other.lengthCentimeters);
     }
-    /** Multiplies this unit by {@code other} */
-    public LengthUnit mul(double other) {
+    /** Multiplies this unit by double {@code other}. <br/> Use with caution, never multiply by another unit using this */
+    public LengthUnit mulRaw(double other) {
         return new LengthUnit(lengthCentimeters * other);
     }
     /** Divides this unit by {@code other} */
     public LengthUnit div(LengthUnit other) {
         return new LengthUnit(lengthCentimeters / other.lengthCentimeters);
     }
-    /** Divides this unit by {@code other} */
-    public LengthUnit div(double other) {
+    /** Divides this unit by double {@code other}. <br/> Use with caution, never divide by another unit using this */
+    public LengthUnit divRaw(double other) {
         return new LengthUnit(lengthCentimeters / other);
     }
     // endregion

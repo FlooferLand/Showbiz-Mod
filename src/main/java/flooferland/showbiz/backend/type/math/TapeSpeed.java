@@ -11,18 +11,18 @@ import java.time.Duration;
  */
 public class TapeSpeed {
     protected final LengthUnit speedPerSecond;
-    private TapeSpeed(double speedIps) {
-        this.speedPerSecond = LengthUnit.ofInches(speedIps);
+    private TapeSpeed(LengthUnit speed) {
+        this.speedPerSecond = speed;
     }
     
     // region | Creating from several units
     /** Creates a new TapeSpeed object from a speed (measured in Inches-Per-Second) */
     public static TapeSpeed ofInchesPerSecond(double inches) {
-        return new TapeSpeed(inches);
+        return new TapeSpeed(LengthUnit.ofInches(inches));
     }
     /** Creates a new TapeSpeed object from a speed (measured in Meters-Per-Second) */
     public static TapeSpeed ofMetersPerSecond(double meters) {
-        return new TapeSpeed(LengthUnit.ofMeters(meters).asInches());
+        return new TapeSpeed(LengthUnit.ofMeters(meters));
     }
     // endregion
     
@@ -38,19 +38,19 @@ public class TapeSpeed {
     // region | Math
     /** Adds {@code other} to this unit */
     public TapeSpeed add(TapeSpeed other) {
-        return new TapeSpeed(speedPerSecond.add(other.speedPerSecond).asInches());
+        return new TapeSpeed(speedPerSecond.add(other.speedPerSecond));
     }
     /** Subtracts {@code other} from this unit */
     public TapeSpeed sub(TapeSpeed other) {
-        return new TapeSpeed(speedPerSecond.sub(other.speedPerSecond).asInches());
+        return new TapeSpeed(speedPerSecond.sub(other.speedPerSecond));
     }
     /** Multiplies this unit by {@code other} */
     public TapeSpeed mul(TapeSpeed other) {
-        return new TapeSpeed(speedPerSecond.mul(other.speedPerSecond).asInches());
+        return new TapeSpeed(speedPerSecond.mul(other.speedPerSecond));
     }
     /** Divides this unit by {@code other} */
     public TapeSpeed div(TapeSpeed other) {
-        return new TapeSpeed(speedPerSecond.div(other.speedPerSecond).asInches());
+        return new TapeSpeed(speedPerSecond.div(other.speedPerSecond));
     }
 
     /** Gets the tape length from a duration */
@@ -58,7 +58,7 @@ public class TapeSpeed {
         long seconds = duration.getSeconds();
         double nanoseconds = duration.getNano() / 1_000_000_000.0;
         double totalSeconds = seconds + nanoseconds;
-        return speedPerSecond.mul(totalSeconds);
+        return speedPerSecond.mulRaw(totalSeconds);
     }
     // endregion
 
