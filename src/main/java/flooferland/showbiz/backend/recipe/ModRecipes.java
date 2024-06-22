@@ -12,7 +12,6 @@ public class ModRecipes {
     public static final RecipeSerializer<ReelAddTapeRecipe> REEL_ADD_TAPE_RECIPE = register("reel_add_tape_recipe", new SpecialRecipeSerializer(ReelAddTapeRecipe::new));
 
     public static <S extends RecipeSerializer<T>, T extends Recipe<?>> S register(String id, S serializer) {
-        System.out.println("Registering " + id);
         Identifier identifier = Identifier.of(ShowbizMod.MOD_ID, id);
         return Registry.register(Registries.RECIPE_SERIALIZER, identifier, serializer);
     }
