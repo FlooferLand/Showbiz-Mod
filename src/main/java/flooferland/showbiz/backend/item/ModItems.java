@@ -1,6 +1,8 @@
 package flooferland.showbiz.backend.item;
 
 import flooferland.showbiz.ShowbizMod;
+import flooferland.showbiz.backend.item.base.ItemWithTape;
+import flooferland.showbiz.backend.item.custom.KeyItem;
 import flooferland.showbiz.backend.item.custom.ReelItem;
 import net.minecraft.component.type.FoodComponent;
 import net.minecraft.item.*;
@@ -15,12 +17,16 @@ public class ModItems {
             "reel",
             new ReelItem(new Item.Settings().maxCount(1))
     );
+    public static final Item KEY = registerItem(
+            "key",
+            new KeyItem(new Item.Settings().maxCount(1))
+    );
     // endregion
     
     // region | For technical recipes
     public static final Item MAGNETIC_TAPE = registerItem(
             "magnetic_tape",
-            new Item(new Item.Settings().food(new FoodComponent.Builder().nutrition(0).snack().build()))
+            new ItemWithTape(new Item.Settings().food(new FoodComponent.Builder().nutrition(0).snack().build()))
     );
     // endregion
     

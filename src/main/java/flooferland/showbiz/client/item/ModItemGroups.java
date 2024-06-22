@@ -39,6 +39,7 @@ public class ModItemGroups {
                 .register(entries -> {
                     entries.add(ModItems.PIZZA_SLICE);
                     entries.add(ModBlocks.PIZZA);
+                    entries.add(ModItems.KEY);
                 });
         // endregion
 
