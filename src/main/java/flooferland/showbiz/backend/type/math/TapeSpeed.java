@@ -2,13 +2,12 @@ package flooferland.showbiz.backend.type.math;
 
 import java.time.Duration;
 
-// TODO: FIX THIS! THE MATH IS CURRENTLY BROKEN AS HELL
-
 /**
  * The measurement for the speed of a tape (PER SECOND) <br/>
  * RAE seem to use 7.5 IPS <br/>
  * <a href="https://chatgpt.com/share/e812c190-6e61-4074-af48-a3e9c1d7c398">ChatGPT explanation of stuff</a>
  */
+@SuppressWarnings("unused")
 public class TapeSpeed {
     protected final LengthUnit speedPerSecond;
     private TapeSpeed(LengthUnit speed) {
