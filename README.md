@@ -12,3 +12,8 @@ Minecraft lets you combine tons of different mods and situations, making this si
 Unlike a proper simulation engine, this mod is pretty simple by design.
 
 ### `⚠️ This project is in early development ⚠️`
+
+## Components
+- [Showbiz-Show-Format](https://github.com/FlooferLand/Showbiz-Show-Format) _(todo: link a maven repo link here once its up)_
+  - Reads show data from a custom bin format created by passing `rshow` files into [RshowMiddleware](https://github.com/FlooferLand/RshowMiddleware)
+  - Additionally allows for compression, which the `rshow` format doesn't.
