@@ -1,0 +1,3 @@
+[submodule "src/main/java/flooferland/chirp"]
+	path = src/main/java/flooferland/chirp
+	url = https://github.com/FlooferLand/chirp-src
