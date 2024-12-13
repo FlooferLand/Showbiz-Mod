@@ -1,6 +1,6 @@
 package flooferland.showbiz.backend.type;
 
-import flooferland.showbiz.backend.audio.ModSound;
+import flooferland.showbiz.backend.registry.ModSound;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.math.BlockPos;

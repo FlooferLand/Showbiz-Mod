@@ -1,7 +1,7 @@
 package flooferland.showbiz.datagen.providers.base;
 
 import com.google.gson.*;
-import flooferland.showbiz.backend.audio.ModSound;
+import flooferland.showbiz.backend.registry.ModSound;
 import flooferland.showbiz.backend.util.ShowbizAudio;
 import flooferland.showbiz.backend.util.ShowbizEnv;
 import flooferland.showbiz.backend.util.ShowbizExceptions;
@@ -20,8 +20,8 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 // TODO: Add a way to automatically find the sound via the registry ID. Would get rid of repetition.
-//       Ex: `builder.add(ModSound.TEST, "test")` would become `builder.add(ModSound.TEST)`
-//       Ex: `builder.add(ModSound.TAPE_PULL, "mechanical/tape_pull")` would become `builder.add(ModSound.TAPE_PULL, "mechanical")`
+//       Ex: `build.add(ModSound.TEST, "test")` would become `build.add(ModSound.TEST)`
+//       Ex: `build.add(ModSound.TAPE_PULL, "mechanical/tape_pull")` would become `build.add(ModSound.TAPE_PULL, "mechanical")`
 
 /** Made this as there is no built-in Fabric implementation.
  *  This also stores additional information inside `sounds.json` which should honestly be provided in vanilla
@@ -45,7 +45,7 @@ public abstract class BaseSoundProvider implements DataProvider {
 
                     // TODO: Make it throw a warning if the subtitle path and the file name aren't the same
                     // TODO: Add a easy-to-read "path not found" error and fail without crashing/stopping data generation
-                    // TODO: Add the ability to optionally specify the file format (`.ogg`) after a path in the builder `add` method
+                    // TODO: Add the ability to optionally specify the file format (`.ogg`) after a path in the build `add` method
                     
                     // Safety check
                     for (String soundPath : soundPaths) {

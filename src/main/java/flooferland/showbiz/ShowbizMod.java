@@ -1,13 +1,9 @@
 package flooferland.showbiz;
 
-import flooferland.showbiz.backend.audio.ModSound;
-import flooferland.showbiz.backend.block.ModBlocks;
-import flooferland.showbiz.backend.blockEntity.ModBlocksWithEntities;
-import flooferland.showbiz.backend.component.ModDataComponents;
-import flooferland.showbiz.backend.entity.ModEntities;
-import flooferland.showbiz.backend.item.ModItems;
-import flooferland.showbiz.backend.recipe.ModRecipes;
+import flooferland.showbiz.backend.registry.*;
+import flooferland.showbiz.backend.resource.MultiPartResourceReloader;
 import flooferland.showbiz.backend.resource.SoundsResourceReloader;
+import flooferland.showbiz.client.registry.ModClientCommands;
 import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
@@ -25,19 +21,23 @@ public class ShowbizMod implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		// Asset loading
-		ResourceManagerHelper.get(ResourceType.CLIENT_RESOURCES)
-				.registerReloadListener(new SoundsResourceReloader());
+		var clientResources = ResourceManagerHelper.get(ResourceType.CLIENT_RESOURCES);
+		var serverResources = ResourceManagerHelper.get(ResourceType.SERVER_DATA);
+		clientResources.registerReloadListener(new SoundsResourceReloader());
+		clientResources.registerReloadListener(new MultiPartResourceReloader());
 		
 		// Registering content; Making sure classes won't get optimized away
 		ModBlocks.registerBlocks();
 		ModBlocksWithEntities.registerBlocks();
 		ModEntities.registerEntities();
 		ModItems.registerItems();
+		ModCommands.registerCommands();
 		ModSound.registerSounds();
 		ModDataComponents.registerDataComponents();
 		ModRecipes.registerRecipes();
+		ModNetworking.register();
 		
-		LOGGER.info(String.format("The %s mod initialized!", MOD_ID));
+		LOGGER.info("The {} mod initialized!", MOD_ID);
 	}
 
 	public static Path getConfigPath(boolean isServer) {

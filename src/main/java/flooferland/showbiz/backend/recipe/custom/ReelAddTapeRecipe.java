@@ -1,7 +1,7 @@
 package flooferland.showbiz.backend.recipe.custom;
 
-import flooferland.showbiz.backend.item.ModItems;
-import flooferland.showbiz.backend.recipe.ModRecipes;
+import flooferland.showbiz.backend.registry.ModItems;
+import flooferland.showbiz.backend.registry.ModRecipes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.*;
 import net.minecraft.recipe.book.CraftingRecipeCategory;

@@ -1,7 +1,7 @@
 package flooferland.showbiz.client.screen.custom;
 
 import flooferland.showbiz.backend.blockEntity.base.ContainerBlockEntity;
-import flooferland.showbiz.client.screen.ModScreenHandlers;
+import flooferland.showbiz.client.registry.ModScreenHandlers;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;

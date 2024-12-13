@@ -2,7 +2,7 @@
     "//": "This hasn't been implemented yet!",
 
     "FlooferLand": {
-        "roles": ["mod developer", "lead programmer"],
+        "roles": ["mod developer", "lead programmer", "music"],
         "credit": ["Making the mod"],
         "social": ["https://github.com/FlooferLand"]
     },
@@ -11,7 +11,7 @@
         "credit": [
             "TODO: Fill this in at the end of the project"
         ],
-        "social": ["https://youtube.com/"]
+        "social": ["https://youtube.com/@monsterwaill"]
     },
     "MagicMan": {
         "roles": ["3D artist"],

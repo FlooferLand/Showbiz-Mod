@@ -1,6 +1,6 @@
 package flooferland.showbiz.datagen.providers;
 
-import flooferland.showbiz.backend.audio.ModSound;
+import flooferland.showbiz.backend.registry.ModSound;
 import flooferland.showbiz.datagen.providers.base.BaseSoundProvider;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 

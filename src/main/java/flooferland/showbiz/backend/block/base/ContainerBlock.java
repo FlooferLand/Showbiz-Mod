@@ -1,16 +1,13 @@
 package flooferland.showbiz.backend.block.base;
 
-import com.mojang.serialization.MapCodec;
-import flooferland.showbiz.backend.blockEntity.ModBlocksWithEntities;
+import flooferland.showbiz.backend.registry.ModBlocksWithEntities;
 import flooferland.showbiz.backend.blockEntity.custom.ReelHolderBlockEntity;
 import flooferland.showbiz.backend.util.ShowbizUtil;
-import flooferland.showbiz.client.screen.ModScreenHandlers;
+import flooferland.showbiz.client.registry.ModScreenHandlers;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.BlockWithEntity;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.block.entity.LockableContainerBlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.util.ActionResult;
@@ -20,24 +17,10 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 /** Simplifies the creation of containers, and lets them share functionality */
-public class ContainerBlock extends BlockWithEntity {
-    public static MapCodec<ContainerBlock> CODEC = null;
-    public static ICreateBlockEntity BLOCK_ENTITY_MAKER = null;
-
-    public interface ICreateBlockEntity {
-        LockableContainerBlockEntity createBlockEntity(BlockPos pos, BlockState state);
-    }
-
+public class ContainerBlock extends EntityTiedBlock {
     public ContainerBlock(Settings settings, ICreateBlockEntity blockEntity) {
-        super(settings);
-        BLOCK_ENTITY_MAKER = blockEntity;
+        super(settings, blockEntity);
         CODEC = ContainerBlock.createCodec((codecSettings) -> new ContainerBlock(codecSettings, BLOCK_ENTITY_MAKER));
-    }
-
-    @Nullable
-    @Override
-    public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-        return BLOCK_ENTITY_MAKER.createBlockEntity(pos, state);
     }
 
     @Nullable
@@ -80,11 +63,6 @@ public class ContainerBlock extends BlockWithEntity {
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World _world, BlockState _state, BlockEntityType<T> type) {
         return validateTicker(type, ModBlocksWithEntities.REEL_HOLDER.entity(),
                 (world, pos, state, blockEntity) -> blockEntity.tick(world, pos, state));
-    }
-
-    @Override
-    protected MapCodec<? extends BlockWithEntity> getCodec() {
-        return CODEC;
     }
 }
 

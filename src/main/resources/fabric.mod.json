@@ -6,8 +6,7 @@
 	"description": "Unofficial Rock-afire Explosion simulator for Minecraft!\nRock-afire Explosion by Aaron Fechter\nBuilt for ${minecraft_version} (Java ${min_java_version})",
 	"authors": [
 		"FlooferLand",
-		"Monsterwaill",
-		"// TODO: FILL IN"
+		"Monsterwaill"
 	],
 	"contact": {
 		"homepage": "https://modrinth.com/mod/showbiz",
@@ -29,9 +28,9 @@
 		"showbiz.client.mixins.json"
 	],
 	"depends": {
-		"fabricloader": ">=${loader_version}",
-		"minecraft": ">=${minecraft_version}",
+		"minecraft": "${minecraft_version}",
 		"java": ">=${min_java_version}",
+		"fabricloader": ">=${loader_version}",
 		"fabric-api": ">=${fabric_version}",
 		"geckolib": ">=${geckolib_version}"
 	}

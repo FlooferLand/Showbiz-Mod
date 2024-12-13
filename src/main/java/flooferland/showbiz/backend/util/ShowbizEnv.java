@@ -3,15 +3,13 @@ package flooferland.showbiz.backend.util;
 import flooferland.showbiz.ShowbizMod;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.ModContainer;
+import net.minecraft.resource.ResourceManager;
+
 import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.Optional;
 
-public final class ShowbizEnv {
-    public static boolean isToughAsNailsLoaded() {
-        return FabricLoader.getInstance().isModLoaded("toughasnails");
-    }
-    
+public final class ShowbizEnv {    
     public static Path getResourcePackRoot() {
         Optional<ModContainer> container = FabricLoader.getInstance().getModContainer(ShowbizMod.MOD_ID);
         if (container.isEmpty())

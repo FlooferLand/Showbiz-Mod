@@ -1,6 +1,6 @@
 package flooferland.showbiz.backend.item.base;
 
-import flooferland.showbiz.backend.component.ModDataComponents;
+import flooferland.showbiz.backend.registry.ModDataComponents;
 import flooferland.showbiz.backend.util.ShowbizUtil;
 import net.minecraft.component.ComponentMap;
 import net.minecraft.item.Item;

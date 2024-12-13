@@ -14,32 +14,32 @@ public class ShowbizModMenu implements ModMenuApi {
         Identifier background = Identifier.of(ShowbizMod.MOD_ID, "textures/gui/tile.png");
 
         return (ConfigScreenFactory<Screen>) screen -> {
-            ConfigBuilder builder = ConfigBuilder.create()
+            ConfigBuilder build = ConfigBuilder.create()
                     .setParentScreen(screen)
                     .setTitle(Text.translatable("title.showbiz.full"))
                     .setDefaultBackgroundTexture(background)
                     .setTransparentBackground(true)
                     .setAlwaysShowTabs(true);
 
-            var meowEntry1 = builder.entryBuilder()
+            var meowEntry1 = build.entryBuilder()
                     .startBooleanToggle(Text.of("Evil"), false)
                     .setYesNoTextSupplier((a) -> Text.of(a ? "Maybe" : "Perhaps"))
                     .build();
-            var meowEntry2 = builder.entryBuilder()
+            var meowEntry2 = build.entryBuilder()
                     .startIntSlider(Text.of("Test"), 0, 0, 8)
                     .setTooltip(Text.of("Interesting test here.."))
                     .build();
 
             // Categories
-            builder.getOrCreateCategory(Text.of("Meow"))
+            build.getOrCreateCategory(Text.of("Meow"))
                     .addEntry(meowEntry1)
                     .addEntry(meowEntry2)
                     .setCategoryBackground(background);
 
-            builder.setSavingRunnable(() -> {
+            build.setSavingRunnable(() -> {
                 // TODO: Save config to disk
             });
-            return builder.build();
+            return build.build();
         };
 
         // return parent -> AutoConfig.getConfigScreen(ModConfig.class, parent).get();

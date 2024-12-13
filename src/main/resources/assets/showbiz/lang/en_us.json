@@ -6,11 +6,12 @@
     "tooltip.showbiz.tape.length": "Tape length %s",
     "tooltip.showbiz.reel.length": "Reel length %s",
 
-    "item.showbiz.pizza_slice": "Pizza slice (yummy)",
+    "item.showbiz.pizza_slice": "Pizza Slice (yummy)",
     "item.showbiz.reel": "Reel",
-    "item.showbiz.magnetic_tape": "Magnetic tape",
+    "item.showbiz.magnetic_tape": "Magnetic Tape",
     "item.showbiz.key": "Key",
     
-    "block.showbiz.pizza": "Pizza box",
-    "block.showbiz.reel_holder": "Reel holder"
+    "block.showbiz.pizza": "Pizza Box",
+    "block.showbiz.reel_holder": "Reel Holder",
+    "block.showbiz.show_selector": "Show Selector"
 }

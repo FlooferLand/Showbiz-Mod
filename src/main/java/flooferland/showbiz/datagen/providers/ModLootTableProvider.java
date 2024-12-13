@@ -1,6 +1,6 @@
 package flooferland.showbiz.datagen.providers;
 
-import flooferland.showbiz.backend.block.ModBlocks;
+import flooferland.showbiz.backend.registry.ModBlocks;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
 import net.minecraft.registry.RegistryWrapper;

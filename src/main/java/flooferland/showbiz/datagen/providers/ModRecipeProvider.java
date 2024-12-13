@@ -1,8 +1,8 @@
 package flooferland.showbiz.datagen.providers;
 
-import flooferland.showbiz.backend.block.ModBlocks;
-import flooferland.showbiz.backend.blockEntity.ModBlocksWithEntities;
-import flooferland.showbiz.backend.item.ModItems;
+import flooferland.showbiz.backend.registry.ModBlocks;
+import flooferland.showbiz.backend.registry.ModBlocksWithEntities;
+import flooferland.showbiz.backend.registry.ModItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.data.server.recipe.*;
@@ -17,11 +17,13 @@ import net.minecraft.util.Identifier;
 
 import java.util.concurrent.CompletableFuture;
 
+// TODO: Add survival recipes for all of the blocks
+
 public class ModRecipeProvider extends FabricRecipeProvider {
     public ModRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);
     }
-
+    
     @Override
     public void generate(RecipeExporter exporter) {
         // region | Reels and tapes

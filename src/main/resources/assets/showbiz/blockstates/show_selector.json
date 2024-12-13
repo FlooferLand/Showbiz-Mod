@@ -1,0 +1,5 @@
+{
+    "variants": {
+        "": { "model": "showbiz:block/show_selector" }
+    }
+}

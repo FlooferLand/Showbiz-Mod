@@ -1,9 +1,9 @@
 package flooferland.showbiz.backend.blockEntity.custom;
 
-import flooferland.showbiz.backend.block.custom.ReelHolder;
-import flooferland.showbiz.backend.blockEntity.ModBlocksWithEntities;
+import flooferland.showbiz.backend.block.custom.ReelHolderBlock;
+import flooferland.showbiz.backend.registry.ModBlocksWithEntities;
 import flooferland.showbiz.backend.blockEntity.base.ContainerBlockEntity;
-import flooferland.showbiz.backend.item.ModItems;
+import flooferland.showbiz.backend.registry.ModItems;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
@@ -36,7 +36,7 @@ public class ReelHolderBlockEntity extends ContainerBlockEntity implements GeoBl
 
     @Override
     public int getTargetInvSize() {
-        return ReelHolder.maxReelCount;
+        return ReelHolderBlock.maxReelCount;
     }
 
     @Override

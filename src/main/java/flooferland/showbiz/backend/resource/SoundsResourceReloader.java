@@ -5,8 +5,8 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonParser;
 import flooferland.showbiz.ShowbizMod;
-import flooferland.showbiz.backend.audio.ModSound;
-import flooferland.showbiz.backend.audio.SoundInfo;
+import flooferland.showbiz.backend.registry.ModSound;
+import flooferland.showbiz.backend.type.SoundInfo;
 import flooferland.showbiz.backend.util.ShowbizEnv;
 import net.fabricmc.fabric.api.resource.IdentifiableResourceReloadListener;
 import net.minecraft.resource.Resource;
@@ -20,6 +20,9 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Optional;
 
+/**
+ * Loads in additional sound metadata from the mod's resource pack
+ */
 public class SoundsResourceReloader extends SinglePreparationResourceReloader<HashMap<String, Float>> implements IdentifiableResourceReloadListener {
     @Override
     protected HashMap<String, Float> prepare(ResourceManager manager, Profiler profiler) {

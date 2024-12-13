@@ -1,0 +1,140 @@
+{
+  "parent": "builtin/entity",
+  "texture_size": [
+    64,
+    64
+  ],
+  "display": {
+    "thirdperson_righthand": {
+      "rotation": [
+        179.5,
+        0,
+        180
+      ],
+      "translation": [
+        0,
+        -5.75,
+        1
+      ],
+      "scale": [
+        0.7,
+        0.7,
+        0.7
+      ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [
+        179.5,
+        0,
+        180
+      ],
+      "translation": [
+        0,
+        -5.75,
+        1
+      ],
+      "scale": [
+        0.7,
+        0.7,
+        0.7
+      ]
+    },
+    "firstperson_righthand": {
+      "rotation": [
+        180,
+        0,
+        180
+      ],
+      "translation": [
+        0,
+        -6,
+        1.75
+      ],
+      "scale": [
+        0.7,
+        0.7,
+        0.7
+      ]
+    },
+    "firstperson_lefthand": {
+      "rotation": [
+        180,
+        0,
+        180
+      ],
+      "translation": [
+        0,
+        -6,
+        1.75
+      ],
+      "scale": [
+        0.7,
+        0.7,
+        0.7
+      ]
+    },
+    "ground": {
+      "translation": [
+        0,
+        -3.25,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ]
+    },
+    "gui": {
+      "rotation": [
+        -180,
+        37.46,
+        -180
+      ],
+      "translation": [
+        0,
+        -7.5,
+        0.75
+      ],
+      "scale": [
+        0.75,
+        0.75,
+        0.75
+      ]
+    },
+    "head": {
+      "rotation": [
+        -55,
+        0,
+        0
+      ],
+      "translation": [
+        0,
+        -15,
+        19.25
+      ],
+      "scale": [
+        2,
+        2,
+        2
+      ]
+    },
+    "fixed": {
+      "rotation": [
+        -12.5,
+        0,
+        0
+      ],
+      "translation": [
+        0,
+        -6,
+        0.75
+      ],
+      "scale": [
+        0.6,
+        0.6,
+        0.6
+      ]
+    }
+  }
+}

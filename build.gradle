@@ -1,13 +1,14 @@
 plugins {
-	id "fabric-loom" version "1.7.3"
+	id "base"
+	id "fabric-loom" version "1.9-SNAPSHOT"
 	id "maven-publish"
+	id "com.github.spotbugs" version "6.0.26"
 }
 
 // Settings and variables
 version = project.mod_version + "-" + project.minecraft_version
 group = project.maven_group
 int minJavaVersion = Integer.parseInt(project.min_java_version)
-archivesBaseName = archives_base_name
 
 base {
 	archivesName = project.archives_base_name
@@ -56,10 +57,16 @@ fabricApi {
 def isServer = ((!project.hasProperty("fabric.dli.env")) || project.property("fabric.dli.env") == "server")
 def isDatagen = project.hasProperty("fabric-api.datagen") && project.property("fabric.dli.env") == "server"
 dependencies {
-	// To change the versions see the gradle.properties file
+	// Minecraft
 	minecraft "com.mojang:minecraft:${minecraft_version}"
 	mappings "net.fabricmc:yarn:${yarn_mappings}:v2"
 	modImplementation "net.fabricmc:fabric-loader:${loader_version}"
+	
+	// Jackson (JSON, YAML, etc)
+	implementation "com.fasterxml.jackson.core:jackson-core:${jackson_version}"
+	implementation "com.fasterxml.jackson.core:jackson-annotations:${jackson_version}"
+	implementation "com.fasterxml.jackson.core:jackson-databind:${jackson_version}"
+	implementation "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:${jackson_version}"
 
 	// Mod dependencies
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
@@ -92,8 +99,9 @@ processResources {
 	filesMatching("fabric.mod.json") {
 		expand properties
 	}
-	filesMatching(archivesBaseName + ".mixins.json") {
-		expand "archivesBaseName": archivesBaseName
+	filesMatching(project.archives_base_name + ".mixins.json") {
+		expand "archivesName": project.archives_base_name
+		expand "archivesBaseName": project.archives_base_name
 	}
 
 	duplicatesStrategy = DuplicatesStrategy.WARN
