@@ -16,6 +16,7 @@
 	"license": "GPL3",
 	"icon": "assets/showbiz/icon.png",
 	"environment": "*",
+	"accessWidener" : "showbiz.accesswidener",
 	"entrypoints": {
 		"main": ["flooferland.showbiz.ShowbizMod"],
 		"client": ["flooferland.showbiz.client.ShowbizClient"],

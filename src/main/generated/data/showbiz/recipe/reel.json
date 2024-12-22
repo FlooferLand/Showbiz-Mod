@@ -2,17 +2,14 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "showbiz:magnetic_tape"
-    },
-    {
-      "tag": "minecraft:wooden_slabs"
-    },
-    {
-      "item": "minecraft:iron_nugget"
-    }
+    "showbiz:magnetic_tape",
+    "#minecraft:wooden_slabs",
+    "minecraft:iron_nugget"
   ],
   "result": {
+    "components": {
+      "showbiz:tape_length": 0
+    },
     "count": 1,
     "id": "showbiz:reel"
   }

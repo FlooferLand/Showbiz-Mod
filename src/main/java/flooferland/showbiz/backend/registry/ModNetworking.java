@@ -7,6 +7,7 @@ import flooferland.showbiz.backend.type.IMultiPartInteractable;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.minecraft.entity.Entity;
 import net.minecraft.util.Identifier;
 
 public class ModNetworking {
@@ -50,7 +51,7 @@ public class ModNetworking {
                 for (var entityId : payload.entities()) {
                     var entity = player.clientWorld.getEntityById(entityId);
                     if (entity != null) {
-                        entity.kill();
+                        entity.remove(Entity.RemovalReason.DISCARDED);
                     }
                 }
             });

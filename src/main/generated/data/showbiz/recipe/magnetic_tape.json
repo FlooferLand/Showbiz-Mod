@@ -2,15 +2,9 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "minecraft:dried_kelp"
-    },
-    {
-      "item": "minecraft:iron_nugget"
-    },
-    {
-      "item": "minecraft:copper_ingot"
-    }
+    "minecraft:dried_kelp",
+    "minecraft:iron_nugget",
+    "minecraft:copper_ingot"
   ],
   "result": {
     "count": 1,

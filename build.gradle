@@ -45,9 +45,9 @@ repositories {
 	}
 }
 
-// loom {
-// 	accessWidenerPath = file("src/main/resources/showbiz.accesswidener")
-// }
+loom {
+	accessWidenerPath = file("src/main/resources/showbiz.accesswidener")
+}
 
 fabricApi {
 	configureDataGeneration()

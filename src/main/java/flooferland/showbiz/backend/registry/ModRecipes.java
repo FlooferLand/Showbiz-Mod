@@ -9,7 +9,7 @@ import net.minecraft.util.Identifier;
 
 public class ModRecipes {
 
-    public static final RecipeSerializer<ReelAddTapeRecipe> REEL_ADD_TAPE_RECIPE = register("reel_add_tape_recipe", new SpecialRecipeSerializer(ReelAddTapeRecipe::new));
+    public static final RecipeSerializer<ReelAddTapeRecipe> REEL_ADD_TAPE_RECIPE = register("reel_add_tape_recipe", new SpecialCraftingRecipe.SpecialRecipeSerializer<>(ReelAddTapeRecipe::new));
 
     public static <S extends RecipeSerializer<T>, T extends Recipe<?>> S register(String id, S serializer) {
         Identifier identifier = Identifier.of(ShowbizMod.MOD_ID, id);

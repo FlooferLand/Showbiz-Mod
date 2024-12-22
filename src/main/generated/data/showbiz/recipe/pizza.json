@@ -2,15 +2,9 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "showbiz:pie_crust"
-    },
-    {
-      "item": "showbiz:milk_bottle"
-    },
-    {
-      "item": "showbiz:tomato"
-    }
+    "showbiz:pie_crust",
+    "showbiz:milk_bottle",
+    "showbiz:tomato"
   ],
   "result": {
     "count": 1,

@@ -5,7 +5,7 @@ import flooferland.showbiz.backend.blockEntity.custom.ReelHolderBlockEntity;
 import net.minecraft.block.*;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.state.StateManager;
-import net.minecraft.state.property.DirectionProperty;
+import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
@@ -16,7 +16,7 @@ import net.minecraft.world.BlockView;
 
 public class ReelHolderBlock extends ContainerBlock {
     public static final int maxReelCount = 7;
-    public static final DirectionProperty FACING = Properties.FACING;
+    public static final EnumProperty<Direction> FACING = Properties.FACING;
     
     public ReelHolderBlock(Settings settings) {
         super(settings, ReelHolderBlockEntity::new);
@@ -25,7 +25,7 @@ public class ReelHolderBlock extends ContainerBlock {
 
     @Override
     public BlockRenderType getRenderType(BlockState state) {
-        return BlockRenderType.ENTITYBLOCK_ANIMATED;
+        return BlockRenderType.INVISIBLE;
     }
 
     @Override
@@ -50,7 +50,7 @@ public class ReelHolderBlock extends ContainerBlock {
     }
 
     @Override
-    protected boolean isTransparent(BlockState state, BlockView world, BlockPos pos) {
+    protected boolean isTransparent(BlockState state) {
         return true;
     }
 

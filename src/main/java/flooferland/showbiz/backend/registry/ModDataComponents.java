@@ -14,7 +14,7 @@ public class ModDataComponents {
     public static final ComponentType<Integer> TAPE_LENGTH = register(
             "tape_length",
             builder -> builder.
-                    codec(Codecs.NONNEGATIVE_INT)
+                    codec(Codecs.NON_NEGATIVE_INT)
                     .packetCodec(PacketCodecs.VAR_INT)
     );
 

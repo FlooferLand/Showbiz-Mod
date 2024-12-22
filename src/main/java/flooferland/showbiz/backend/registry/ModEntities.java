@@ -11,6 +11,8 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
@@ -23,7 +25,7 @@ public class ModEntities {
     private static <E extends Entity> EntityType<E> registerEntity(String id, IEntityBuilder<E> entityBuilder, IEntityDataBuilder<E> additionalBuilder, SpawnGroup spawnGroup) {
         var identifier = Identifier.of(ShowbizMod.MOD_ID, id);
         var builder = EntityType.Builder.create((e, world) -> entityBuilder.create(world), spawnGroup);
-        var entityType = additionalBuilder.build((EntityType.Builder<E>) builder).build();
+        var entityType = additionalBuilder.build((EntityType.Builder<E>) builder).build(RegistryKey.of(RegistryKeys.ENTITY_TYPE, identifier));
         
         return Registry.register(Registries.ENTITY_TYPE, identifier, entityType);
     }

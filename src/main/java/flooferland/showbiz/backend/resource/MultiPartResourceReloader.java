@@ -89,15 +89,22 @@ public class MultiPartResourceReloader extends SinglePreparationResourceReloader
                         }
                     }
                     
+                    // TODO: Make it so if the immediate parent doesn't have a "cubes" section, it looks at the parent of that and so on
+                    
                     // Applying parent transformations
+                    // FIXME: Parent key is found, but its not present in boneMap?
                     for (var boneEntry : boneMap.entrySet()) {
                         var name = boneEntry.getKey();
                         var part = boneEntry.getValue();
                         if (part.parent.letSome() instanceof String parentKey) {
                             PartData parent = boneMap.get(parentKey);
-                            var resultPair = ChirpMath.rotateAround(part.pos, parent.pos, parent.rotation.x, parent.rotation.y, parent.rotation.z);
-                            part.pos = resultPair.position();
-                            part.rotation = resultPair.rotation();
+                            if (parent == null) {
+                                System.err.println("parent is null inside of MultiPartResourceReloader 'applying parent transformations''");
+                            } else {
+                                var resultPair = ChirpMath.rotateAround(part.pos, parent.pos, parent.rotation.x, parent.rotation.y, parent.rotation.z);
+                                part.pos = resultPair.position();
+                                part.rotation = resultPair.rotation();
+                            }
                         }
                     }
                     
@@ -126,6 +133,7 @@ public class MultiPartResourceReloader extends SinglePreparationResourceReloader
         public @NotNull Vec2f size;
         public @NotNull Vec3d rotation;
         public @NotNull Option<String> parent;
+        public static final PartData ZERO = new PartData(Vec3d.ZERO, new Vec2f(1f, 1f), Vec3d.ZERO, Option.none());
         public PartData(@NotNull Vec3d pos, @NotNull Vec2f size, @NotNull Vec3d rotation, @NotNull Option<String> parent) {
             this.pos = pos;
             this.size = size;

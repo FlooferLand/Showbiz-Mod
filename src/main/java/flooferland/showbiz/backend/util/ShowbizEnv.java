@@ -1,12 +1,12 @@
 package flooferland.showbiz.backend.util;
 
 import flooferland.showbiz.ShowbizMod;
+import flooferland.showbiz.datagen.ShowbizDataGenerator;
+import net.fabricmc.api.EnvType;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.ModContainer;
-import net.minecraft.resource.ResourceManager;
 
 import java.nio.file.Path;
-import java.util.Arrays;
 import java.util.Optional;
 
 public final class ShowbizEnv {    
@@ -25,10 +25,13 @@ public final class ShowbizEnv {
                 .resolve(ShowbizMod.MOD_ID);
     }
     
+    /** Returns true if the environment is a server (includes datagen) */
+    public static boolean isServer() {
+        return FabricLoader.getInstance().getEnvironmentType() == EnvType.SERVER    ;
+    }
+    
     /** Returns true if the environment is the data generator */
     public static boolean isDataGenerator() {
-        // TODO: Remove this workaround for detecting data generation
-        return (Arrays.asList("1", "true", "TRUE")).contains(System.getenv("DATAGEN"));
-        // return !FabricLoader.getInstance().getEntrypoints(ShowbizMod.MOD_ID, ShowbizDataGenerator.class).isEmpty();
+        return isServer() && ShowbizDataGenerator.runningDatagen;
     }
 }

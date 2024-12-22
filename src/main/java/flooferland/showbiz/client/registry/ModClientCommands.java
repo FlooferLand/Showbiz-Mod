@@ -6,6 +6,7 @@ import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
+import net.minecraft.entity.Entity;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec2f;
@@ -34,7 +35,7 @@ public class ModClientCommands {
         var entities = world.getEntitiesByClass(InteractPartEntity.class, Box.of(player.getPos(), 20, 20, 20), p -> true);
         int killed = 0;
         for (var entity : entities) {
-            entity.kill();
+            entity.remove(Entity.RemovalReason.DISCARDED);
         }
         context.getSource().sendFeedback(Text.of(String.format("Killed %s entities", killed)));
         return 1;

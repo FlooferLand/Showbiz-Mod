@@ -1,44 +1,43 @@
 package flooferland.showbiz.backend.block.custom;
 
-import flooferland.chirp.util.ChirpDebug;
-import flooferland.showbiz.ShowbizMod;
 import flooferland.showbiz.backend.block.base.EntityTiedBlock;
 import flooferland.showbiz.backend.blockEntity.custom.ShowSelectorBlockEntity;
-import flooferland.showbiz.backend.entity.custom.InteractPartEntity;
 import flooferland.showbiz.backend.networking.InteractableDestroyPayload;
+import flooferland.showbiz.backend.registry.ModBlocksWithEntities;
 import flooferland.showbiz.backend.util.MultiPartManager;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.world.ClientWorld;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityTicker;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
-import net.minecraft.state.property.DirectionProperty;
+import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.BlockMirror;
 import net.minecraft.util.BlockRotation;
-import net.minecraft.util.function.BooleanBiFunction;
 import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.*;
-import net.minecraft.util.shape.BitSetVoxelSet;
-import net.minecraft.util.shape.SimpleVoxelShape;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Box;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
+import org.spongepowered.asm.mixin.Final;
 
 public class ShowSelectorBlock extends EntityTiedBlock {
-    public static final DirectionProperty FACING = Properties.FACING;
+    public static final EnumProperty<Direction> FACING = Properties.FACING;
+    public static final boolean ALWAYS_SHOW_INTERACTION_LABELS = false;
     
     public ShowSelectorBlock(Settings settings) {
         super(settings, ShowSelectorBlockEntity::new);
@@ -55,16 +54,6 @@ public class ShowSelectorBlock extends EntityTiedBlock {
 
     @Override
     protected VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) { return getShape(state, world, pos); }
-
-    @Override
-    public void onPlaced(World w, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
-        super.onPlaced(w, pos, state, placer, itemStack);
-        if (!(w instanceof ClientWorld world)) return;  // Spawning client-side
-        
-        if (world.getBlockEntity(pos) instanceof ShowSelectorBlockEntity blockEntity) {
-            blockEntity.multiPart.spawn(world, pos);
-        }
-    }
 
     @Override
     protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
@@ -108,9 +97,15 @@ public class ShowSelectorBlock extends EntityTiedBlock {
 
     @Override
     public BlockRenderType getRenderType(BlockState state) {
-        return BlockRenderType.ENTITYBLOCK_ANIMATED;
+        return BlockRenderType.INVISIBLE;
     }
-    
+
+    @Override
+    public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
+        return validateTicker(type, ModBlocksWithEntities.SHOW_SELECTOR.entity(),
+            (world1, pos1, state1, blockEntity) -> blockEntity.tick(world1, pos1, state1));
+    }
+
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         super.appendProperties(builder);
@@ -134,7 +129,7 @@ public class ShowSelectorBlock extends EntityTiedBlock {
     }
 
     @Override
-    protected boolean isTransparent(BlockState state, BlockView world, BlockPos pos) {
+    protected boolean isTransparent(BlockState state) {
         return true;
     }
     // endregion

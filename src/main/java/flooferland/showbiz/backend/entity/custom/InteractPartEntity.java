@@ -10,11 +10,13 @@ import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityPose;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.packet.s2c.play.EntitySpawnS2CPacket;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -83,9 +85,7 @@ public class InteractPartEntity extends Entity {
     }
 
     @Override
-    public boolean shouldRender(double distance) {
-        return true; // return super.shouldRender(distance);
-    }
+    public boolean shouldRender(double distance) { return true; }
 
     @Override
     public void onSpawnPacket(EntitySpawnS2CPacket packet) {
@@ -96,6 +96,11 @@ public class InteractPartEntity extends Entity {
     public void onRemoved() {
         // TODO: Make the entity respawn if its killed while its block still exists (means like `/kill`, etc)
         super.onRemoved();
+    }
+
+    @Override
+    public boolean damage(ServerWorld world, DamageSource source, float amount) {
+        return false;
     }
 
     @Override
@@ -118,7 +123,6 @@ public class InteractPartEntity extends Entity {
         return true;
     }
 
-    // TODO: Test if projectile collision affects performance at scale
     @Override
     public boolean canBeHitByProjectile() {
         return true;

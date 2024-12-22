@@ -5,11 +5,13 @@ import flooferland.showbiz.backend.entity.custom.InteractPartEntity;
 import flooferland.showbiz.backend.resource.MultiPartResourceReloader;
 import flooferland.showbiz.backend.type.IMultiPartInteractable;
 import net.minecraft.client.world.ClientWorld;
+import net.minecraft.entity.Entity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
+
 import java.util.*;
 
 // TODO: Figure out a way to get interactions from the InteractPartEntity into the block entity itself
@@ -83,13 +85,13 @@ public final class MultiPartManager {
         // Removing entity controls
         for (var id : interactEntities) {
             var entity = world.getEntityById(id);
-            if (entity != null) entity.kill();
+            if (entity != null) entity.remove(Entity.RemovalReason.DISCARDED);
         }
         interactEntities.clear();
         
         // Remove left-over controls that might not be tied to a block
         for (var entity : getControlsNear(world, pos)){
-            entity.kill();
+            entity.remove(Entity.RemovalReason.DISCARDED);
         }
     }
     

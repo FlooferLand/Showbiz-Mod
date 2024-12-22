@@ -3,9 +3,7 @@ package flooferland.showbiz;
 import flooferland.showbiz.backend.registry.*;
 import flooferland.showbiz.backend.resource.MultiPartResourceReloader;
 import flooferland.showbiz.backend.resource.SoundsResourceReloader;
-import flooferland.showbiz.client.registry.ModClientCommands;
 import net.fabricmc.api.ModInitializer;
-
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.resource.ResourceType;

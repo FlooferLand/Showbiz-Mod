@@ -2,15 +2,9 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "minecraft:bread"
-    },
-    {
-      "item": "minecraft:milk_bucket"
-    },
-    {
-      "item": "minecraft:beetroot"
-    }
+    "minecraft:bread",
+    "minecraft:milk_bucket",
+    "minecraft:beetroot"
   ],
   "result": {
     "count": 1,

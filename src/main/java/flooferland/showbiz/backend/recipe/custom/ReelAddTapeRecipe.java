@@ -20,7 +20,7 @@ public class ReelAddTapeRecipe extends SpecialCraftingRecipe {
         System.out.println("Checking ReelAddTapeRecipe");
         boolean has_reel = false;
         boolean has_tape = false;
-        for (int i = 0; i < input.getSize(); i++) {
+        for (int i = 0; i < input.size(); i++) {
             ItemStack itemStack = input.getStackInSlot(i);
             if (itemStack.isEmpty()) continue;
             if (itemStack.isOf(ModItems.REEL)) has_reel = true;
@@ -36,12 +36,7 @@ public class ReelAddTapeRecipe extends SpecialCraftingRecipe {
     }
 
     @Override
-    public boolean fits(int width, int height) {
-        return true;
-    }
-
-    @Override
-    public RecipeSerializer<?> getSerializer() {
+    public RecipeSerializer<? extends SpecialCraftingRecipe> getSerializer() {
         return ModRecipes.REEL_ADD_TAPE_RECIPE;
     }
 }
