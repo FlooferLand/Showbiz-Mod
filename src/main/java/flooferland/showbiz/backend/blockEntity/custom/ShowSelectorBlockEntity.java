@@ -52,23 +52,10 @@ public class ShowSelectorBlockEntity extends BlockEntity implements GeoBlockEnti
     public @NotNull Map<String, Object> getInteractionMapping() {
         final int buttonCount = 12;
         var map = new HashMap<String, Object>();
-        for (int i = 0; i < buttonCount-1; i++) {
+        for (int i = 0; i < buttonCount; i++) {
             map.put("buttonOn/"+i, i);
         }
         return map;
-    }
-
-    @Override
-    public void markRemoved() {
-        super.markRemoved();
-        if (!(world instanceof ClientWorld clientWorld)) return;
-        multiPart.kill(clientWorld, pos);
-    }
-
-    /// How close the player can be and still interact with the interaction entities
-    public float maxInteractionReach() { return maxInteractionReach(null); }
-    public float maxInteractionReach(@Nullable PlayerEntity player) {
-        return (player != null && player.isCreative()) ? 4f : 2.7f;
     }
 
     public void tick(World world, BlockPos pos, BlockState state) {
@@ -92,9 +79,23 @@ public class ShowSelectorBlockEntity extends BlockEntity implements GeoBlockEnti
     }
 
     @Override
+    public void markRemoved() {
+        super.markRemoved();
+        if (!(world instanceof ClientWorld clientWorld)) return;
+        multiPart.kill(clientWorld, pos);
+    }
+
+    /// How close the player can be and still interact with the interaction entities
+    public float maxInteractionReach() { return maxInteractionReach(null); }
+    public float maxInteractionReach(@Nullable PlayerEntity player) {
+        return (player != null && player.isCreative()) ? 4f : 2.7f;
+    }
+
+    @Override
     public void onInteract(Object k, World world, PlayerEntity player) {
         if (!(k instanceof Integer i)) return;
         
+        // TODO: Once a show has been selected via a button, switch all other buttons to their `buttonOff` variants
         player.sendMessage(Text.of("Pressed button " + i), false);
     }
     // endregion

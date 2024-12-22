@@ -1,5 +1,6 @@
 package flooferland.showbiz.backend.entity.custom;
 
+import com.mojang.datafixers.kinds.Const;
 import flooferland.showbiz.ShowbizMod;
 import flooferland.showbiz.backend.networking.InteractPartPayload;
 import flooferland.showbiz.backend.registry.ModEntities;
@@ -7,6 +8,7 @@ import flooferland.showbiz.backend.type.IMultiPartInteractable;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityPose;
@@ -48,12 +50,23 @@ public class InteractPartEntity extends Entity {
 
     public InteractPartEntity(World world, @NotNull String name, @NotNull Vec3d pos, @NotNull Vec2f size, @NotNull BlockPos parentBlock) {
         this(world);
+
+        final double sizeThing = 0.5;
+        size = size.multiply((float) sizeThing);
+        pos = pos.multiply(sizeThing);
+        
         this.name = name;
         this.size = size;
         this.parentBlock = parentBlock;
         this.reinitDimensions();
         this.calculateDimensions();
-        this.setPosition(parentBlock.toCenterPos().x + pos.x, parentBlock.toCenterPos().y + pos.y, parentBlock.toCenterPos().z + pos.z);
+        
+        // TODO: Rotate and position based on the direction the block is facing (currently stuck facing west / negative X)
+        this.setPosition(
+            parentBlock.toCenterPos().x - 0.195f + pos.x,
+            parentBlock.toBottomCenterPos().y - 0.025f + pos.y,
+            parentBlock.toCenterPos().z + 0.028f + pos.z
+        );
     }
 
     @Override
@@ -67,7 +80,7 @@ public class InteractPartEntity extends Entity {
     @Override
     public ActionResult interact(PlayerEntity player, Hand hand) {
         var world = player.getWorld();
-        if (!world.isClient()) return ActionResult.FAIL;  // Client-side interaction
+        if (!(world instanceof ClientWorld clientWorld)) return ActionResult.FAIL;  // Client-side interaction
         
         // Triggering interaction
         if (world.getBlockEntity(parentBlock) instanceof IMultiPartInteractable interact) {

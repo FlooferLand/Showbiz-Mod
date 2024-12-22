@@ -2,6 +2,7 @@ package flooferland.showbiz.backend.block.custom;
 
 import flooferland.showbiz.backend.block.base.EntityTiedBlock;
 import flooferland.showbiz.backend.blockEntity.custom.ShowSelectorBlockEntity;
+import flooferland.showbiz.backend.entity.custom.InteractPartEntity;
 import flooferland.showbiz.backend.networking.InteractableDestroyPayload;
 import flooferland.showbiz.backend.registry.ModBlocksWithEntities;
 import flooferland.showbiz.backend.util.MultiPartManager;
@@ -13,9 +14,12 @@ import net.minecraft.block.ShapeContext;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.EnumProperty;
@@ -24,9 +28,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.BlockMirror;
 import net.minecraft.util.BlockRotation;
 import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Box;
-import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.*;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
@@ -74,26 +76,6 @@ public class ShowSelectorBlock extends EntityTiedBlock {
         
         super.onStateReplaced(state, world, pos, newState, moved);
     }
-
-    /*@Override
-    public boolean hasDynamicBounds() {
-        return true;
-    }
-
-    public VoxelShape getInteractablePartShape() {
-        var voxelShape = VoxelShapes.empty();
-        if (!multiPart.interactableParts.isEmpty()) {
-            for (var entry : multiPart.interactableParts.entrySet()) {
-                var name = entry.getKey();
-                var part = entry.getValue();
-                var shape = VoxelShapes.cuboid(part.size());
-                voxelShape = VoxelShapes.combine(voxelShape, shape, (a, b) -> false);
-            }
-        } else {
-            voxelShape = VoxelShapes.fullCube();
-        }
-        return voxelShape;
-    }*/
 
     @Override
     public BlockRenderType getRenderType(BlockState state) {
