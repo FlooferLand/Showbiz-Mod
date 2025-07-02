@@ -1,14 +1,13 @@
 plugins {
-	id "base"
-	id "fabric-loom" version "1.9-SNAPSHOT"
+	id "fabric-loom" version "${loom_version}"
 	id "maven-publish"
-	id "com.github.spotbugs" version "6.0.26"
+	id("com.github.spotbugs") version "6.2.1"
 }
 
 // Settings and variables
-version = project.mod_version + "-" + project.minecraft_version
-group = project.maven_group
 int minJavaVersion = Integer.parseInt(project.min_java_version)
+version = project.mod_version
+group = project.maven_group
 
 base {
 	archivesName = project.archives_base_name
@@ -29,7 +28,7 @@ repositories {
 				includeGroup "maven.modrinth"
 			}
 		}
-		
+
 		// GeckoLib - animation & model loading
 		maven {
 			name = "GeckoLib"
@@ -50,7 +49,9 @@ loom {
 }
 
 fabricApi {
-	configureDataGeneration()
+	configureDataGeneration {
+		client = true
+	}
 }
 
 // TODO: Make sure isDatagen is only true when running via
@@ -61,7 +62,8 @@ dependencies {
 	minecraft "com.mojang:minecraft:${minecraft_version}"
 	mappings "net.fabricmc:yarn:${yarn_mappings}:v2"
 	modImplementation "net.fabricmc:fabric-loader:${loader_version}"
-	
+	modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
+
 	// Jackson (JSON, YAML, etc)
 	implementation "com.fasterxml.jackson.core:jackson-core:${jackson_version}"
 	implementation "com.fasterxml.jackson.core:jackson-annotations:${jackson_version}"
@@ -69,15 +71,17 @@ dependencies {
 	implementation "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:${jackson_version}"
 
 	// Mod dependencies
-	modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
 	modImplementation "software.bernie.geckolib:geckolib-fabric-${minecraft_version}:${geckolib_version}"
 	modCompileOnly "maven.modrinth:modmenu:${mod_menu_version}"
-	
+
 	// OGG Vorbis reading library for data generation.
 	// Using this library because Mojang/Fabric"s code prevents usage on server-side for some stupid reason
 	//if (isDatagen) {
 	implementation "ws.schild:jave-all-deps:${jave_version}"
 	//}
+
+	// Other
+	spotbugsPlugins 'com.h3xstream.findsecbugs:findsecbugs-plugin:1.12.0'
 }
 
 // Injecting gradle.properties into other files
@@ -118,9 +122,14 @@ java {
 }
 
 jar {
+	inputs.property "archivesName", project.base.archivesName
 	from("LICENSE") {
-		rename { "${it}_${project.base.archivesName.get()}"}
+		rename { "${it}_${inputs.properties.archivesName}"}
 	}
+}
+
+spotbugs {
+	toolVersion = "4.9.3"
 }
 
 // configure the maven publication

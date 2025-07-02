@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:pizza_vanilla"
+        "recipe": "showbiz:pizza_vanilla"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:pizza_vanilla"
+      "showbiz:pizza_vanilla"
     ]
   }
 }

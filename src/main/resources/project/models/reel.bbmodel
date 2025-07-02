@@ -6,12 +6,14 @@
 	},
 	"name": "reel",
 	"parent": "",
+	"java_block_version": "1.21.6",
 	"ambientocclusion": true,
 	"front_gui_light": true,
 	"visible_box": [1, 1, 0],
 	"variable_placeholders": "",
 	"variable_placeholder_buttons": [],
 	"unhandled_root_fields": {},
+	"activity_tracker": 15,
 	"resolution": {
 		"width": 16,
 		"height": 16
@@ -22,6 +24,7 @@
 			"box_uv": false,
 			"rescale": false,
 			"locked": false,
+			"light_emission": 0,
 			"render_order": "default",
 			"allow_mirror_modeling": true,
 			"from": [5.5, 0, 5.5],
@@ -63,6 +66,7 @@
 			"box_uv": false,
 			"rescale": false,
 			"locked": false,
+			"light_emission": 0,
 			"render_order": "default",
 			"allow_mirror_modeling": true,
 			"from": [4.73209, 0, 4.78534],
@@ -105,6 +109,7 @@
 			"box_uv": false,
 			"rescale": false,
 			"locked": false,
+			"light_emission": 0,
 			"render_order": "default",
 			"allow_mirror_modeling": true,
 			"from": [4.22941, 0, 3.75981],
@@ -148,7 +153,6 @@
 			"name": "Reel",
 			"origin": [3.5, 37, 0.5],
 			"color": 0,
-			"nbt": "{}",
 			"uuid": "1f45d1a4-1877-fb5a-75ac-7f4345fd32aa",
 			"export": true,
 			"mirror_uv": false,
@@ -156,13 +160,13 @@
 			"locked": false,
 			"visibility": true,
 			"autouv": 0,
+			"selected": false,
 			"children": [
 				"68ec580d-a006-6276-aee7-7c3a9aeafa03",
 				{
 					"name": "group",
 					"origin": [7.4, 0.5, 3.35],
 					"color": 0,
-					"nbt": "{}",
 					"uuid": "62bf5249-5231-c4a3-f9bf-deed70ddada3",
 					"export": true,
 					"mirror_uv": false,
@@ -170,12 +174,12 @@
 					"locked": false,
 					"visibility": true,
 					"autouv": 0,
+					"selected": false,
 					"children": [
 						{
 							"name": "group",
 							"origin": [6.73726, 0.5, 2.72218],
 							"color": 0,
-							"nbt": "{}",
 							"uuid": "bf3016b6-c093-9610-da93-ffebd9cf303a",
 							"export": true,
 							"mirror_uv": false,
@@ -183,13 +187,13 @@
 							"locked": false,
 							"visibility": true,
 							"autouv": 0,
+							"selected": false,
 							"children": [
 								"bdb87122-d250-99cc-7e55-5f0a4a30aea1",
 								{
 									"name": "group",
 									"origin": [6.73726, 0.5, 2.72218],
 									"color": 0,
-									"nbt": "{}",
 									"uuid": "2dc3c469-32f2-ec51-3f9d-fa223523c620",
 									"export": true,
 									"mirror_uv": false,
@@ -197,6 +201,7 @@
 									"locked": false,
 									"visibility": true,
 									"autouv": 0,
+									"selected": false,
 									"children": ["38db9109-9383-813d-5f1a-b29a72bd2a4e"]
 								}
 							]
@@ -208,11 +213,12 @@
 	],
 	"textures": [
 		{
-			"path": "F:\\Minecraft Mods\\Showbiz-Mod\\src\\main\\resources\\assets\\showbiz\\textures\\item\\reel.png",
+			"path": "E:\\Minecraft Mods\\Showbiz-Mod\\src\\main\\resources\\assets\\showbiz\\textures\\item\\reel.png",
 			"name": "reel.png",
 			"folder": "item",
 			"namespace": "showbiz",
 			"id": "0",
+			"group": "",
 			"width": 32,
 			"height": 32,
 			"uv_width": 16,
@@ -223,6 +229,7 @@
 			"sync_to_project": "",
 			"render_mode": "default",
 			"render_sides": "auto",
+			"pbr_channel": "color",
 			"frame_time": 1,
 			"frame_order_type": "loop",
 			"frame_order": "",
@@ -255,7 +262,7 @@
 			"scale": [2, 2, 2]
 		},
 		"ground": {
-			"rotation": [180, 0, 0],
+			"rotation": [-180, 0, 0],
 			"translation": [0, -10.75, 0]
 		},
 		"gui": {

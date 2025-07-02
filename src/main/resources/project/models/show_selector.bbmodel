@@ -5,17 +5,18 @@
 		"box_uv": true
 	},
 	"name": "show_selector",
-	"model_identifier": "",
+	"model_identifier": "show_selector",
+	"front_gui_light": false,
 	"visible_box": [2, 2.5, 0.75],
 	"variable_placeholders": "",
 	"variable_placeholder_buttons": [],
 	"timeline_setups": [],
 	"unhandled_root_fields": {},
-	"activity_tracker": 821,
-	"geckolib_modid": "",
-	"geckolib_model_type": "Entity",
+	"activity_tracker": 1298,
+	"geckolib_modid": "showbiz",
+	"geckolib_model_type": "Item",
 	"geckolib_filepath_cache": {
-		"model": "E:\\Minecraft Mods\\Showbiz-Mod\\src\\main\\resources\\assets\\showbiz\\geo\\show_selector.geo.json",
+		"model": "E:\\Minecraft Mods\\Showbiz-Mod\\src\\main\\resources\\assets\\showbiz\\geckolib\\models\\block\\show_selector.geo.json",
 		"display": "E:\\Minecraft Mods\\Showbiz-Mod\\src\\main\\resources\\assets\\showbiz\\models\\item\\show_selector.json"
 	},
 	"resolution": {
@@ -2651,6 +2652,7 @@
 			"locked": false,
 			"visibility": true,
 			"autouv": 0,
+			"selected": false,
 			"children": [
 				"e72b2b84-03c1-0160-18e7-ff045f56f5b8",
 				"1c6edbd5-5edb-15a3-c04f-ef4ef7cb788d",
@@ -2678,6 +2680,7 @@
 					"locked": false,
 					"visibility": true,
 					"autouv": 0,
+					"selected": false,
 					"children": [
 						"1943ff55-9934-efd1-2c51-ba623ef518c1",
 						"13265c2e-7fb6-aa4c-2e46-824703311b6f",
@@ -2704,6 +2707,7 @@
 					"locked": false,
 					"visibility": true,
 					"autouv": 0,
+					"selected": false,
 					"children": [
 						"40b0f487-0712-e48d-3447-17fd3d92e6fb",
 						"7984810e-c66b-62bc-5462-12b819eaa80f",
@@ -2740,6 +2744,7 @@
 					"locked": false,
 					"visibility": true,
 					"autouv": 0,
+					"selected": false,
 					"children": [
 						{
 							"name": "bone4",
@@ -2752,6 +2757,7 @@
 							"locked": false,
 							"visibility": true,
 							"autouv": 0,
+							"selected": false,
 							"children": [
 								{
 									"name": "bone5",
@@ -2764,6 +2770,7 @@
 									"locked": false,
 									"visibility": true,
 									"autouv": 0,
+									"selected": false,
 									"children": []
 								}
 							]
@@ -2783,6 +2790,7 @@
 					"locked": false,
 					"visibility": true,
 					"autouv": 0,
+					"selected": false,
 					"children": [
 						"2d52818d-1f1f-0705-3960-8e7af749f90f",
 						"643dd939-fb10-d68e-5fb9-42393601d38c",
@@ -2815,6 +2823,7 @@
 			"sync_to_project": "",
 			"render_mode": "default",
 			"render_sides": "auto",
+			"pbr_channel": "color",
 			"frame_time": 1,
 			"frame_order_type": "loop",
 			"frame_order": "",
@@ -2843,6 +2852,7 @@
 			"sync_to_project": "",
 			"render_mode": "default",
 			"render_sides": "auto",
+			"pbr_channel": "color",
 			"frame_time": 1,
 			"frame_order_type": "loop",
 			"frame_order": "",
@@ -2854,5 +2864,15 @@
 			"relative_path": "../../assets/showbiz/textures/block/show_selector_glowmask.png",
 			"source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAAAXNSR0IArs4c6QAABCBJREFUeF7tnVuS2kAMRWExw/7XA4uZFKlQIQ6Mm5auWpJPfvLj1uPeY8mGmeR8Op2+Tz5/zj5h3kbZq1OdX9zemvB30faEHa1MbcBener8ozqUug7RStnlXywA+GtaKiIroJRd/sUCgL+mpSKyAkrZ5V8sAPhrWipiJQB4DRSgBQACUSuFrARAJV3L1AoAZazSFFoJAJ4BBAwAgEDUSiErAVBJ1zK1AkAZqzSFAoBG1zJRAaCMVZpCAUCja5moAFDGKk2h7wDYe+d+VDMKkHc8jRoHjPps4KhJ72TawuAd74D26Ft+mGY1azsRvOPplThoBs+fCFJJOLpmVPlbx30GwCr09q73ivfparHmbW34tjkAOJTd/zdbCQCv54pP32BaI1IJgNZGrGoOAFYpnyQvACQxYlUZALBK+SR5ASCJEavKAIBVyifJCwBJjFhVRiUA9j4H4BPACYoAYEK0TkcAoJObE70AwIRonY4AQCc3J3oBgAnROh0BgE5uTvQCABOidToCAJ3cnOgFACZE63QEADq5OdELAEyI1ulIpR8L57sAAXkAIBC1UkgPAKK+hWMCCMgCAIGolUJGArB3B6/WLWqSre7zn/wA8FcOAJhEc1Q4JsCkwMpjTAAmgPk/jWICKG9RcWwmABOACfCHgdFJJr4nY8MzAZgATAAmgG3qjI5OXgNtOktOswJYAawAVoBtuLACbPotPc0KYAWwAlgBtiHECrDpt/Q0K4AVwApgBdiGECvApt/S06wAVgArgBVgG0KsAJt+S09HroCljZL8tQIAcHAyAAAAwh4CDy51zvaZADl9CasKAMKkzpkIAHL6ElYVAIRJnTMRAOT0JawqAAiTOmciAMjpS1hVABAmdc5Eo1/k5KyeqswKAIBZwtoBAKC2f+bqAcAsYe0APwHw+GVOIKnt8Y/VjwBwDwAETSEYBcACAZMkMTwAkNiciNIY7REqJ84BAInNiSgtYgVE9EGOSQUAYFK4LsdYAV2cnOwDACaF63JMtQLu7/6Pr5r3cnhe18WXsD72zHku5JNpAQBhFtoSKQEYgWf7j0e+q2f0OpsaBzy9d1fPfow7apj3dQe00NbyHgC26JxOrwAApLdIW+AeAKMPc9sqR895X6dVq2F0AGho6ictjQAw8jT/agKMnOMh8BO3BNcCgEDUSiH3AKjUC7VOKAAAE6J1OiIB4Hq9fl8ul/Pj73eCeV/XyZioXgAgSumkeWQAfH19/W75drud7tPgVf/3CeB5XVKNU5cFAKnt0RcnAUBfNhm8FAAALyWLxpEA4P10PxqvqAdLywaApfKvTy4DwPPpfvRtYb2c9SoAgHqeuVYsAcC1QoJJFQAAqbz5gwNAfo+kFQKAVN78wQEgv0fSCgFAKm/+4ACQ3yNphQAglTd/8F9oXI6Qw3HfrAAAAABJRU5ErkJggg=="
 		}
-	]
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"translation": [0, 0, 1],
+			"scale": [0.55, 0.55, 0.55]
+		},
+		"thirdperson_lefthand": {
+			"translation": [0, 0, 1],
+			"scale": [0.55, 0.55, 0.55]
+		}
+	}
 }

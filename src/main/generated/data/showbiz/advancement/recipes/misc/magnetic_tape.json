@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:magnetic_tape"
+        "recipe": "showbiz:magnetic_tape"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:magnetic_tape"
+      "showbiz:magnetic_tape"
     ]
   }
 }

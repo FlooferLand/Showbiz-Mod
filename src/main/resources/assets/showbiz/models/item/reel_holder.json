@@ -1,5 +1,4 @@
 {
-  "parent": "builtin/entity",
   "texture_size": [
     64,
     64
@@ -31,9 +30,9 @@
     },
     "gui": {
       "rotation": [
-        180,
+        -180,
         -30.5,
-        180
+        -180
       ],
       "translation": [
         0.5,
@@ -60,5 +59,8 @@
         0
       ]
     }
+  },
+  "textures": {
+    "particle": "showbiz:block/reel_holder"
   }
 }

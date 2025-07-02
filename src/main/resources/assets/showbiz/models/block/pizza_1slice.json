@@ -1,6 +1,6 @@
 {
+	"format_version": "1.21.6",
 	"parent": "block/thin_block",
-	"credit": "Made by FlooferLand using Blockbench",
 	"texture_size": [32, 32],
 	"textures": {
 		"0": "showbiz:block/pizza",
@@ -8,17 +8,17 @@
 	},
 	"elements": [
 		{
-			"name": "bottom_right",
-			"from": [1, 0, 1],
-			"to": [8, 1, 8],
+			"name": "top_left",
+			"from": [8, 0, 8],
+			"to": [15, 1, 15],
 			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 8]},
 			"faces": {
-				"north": {"uv": [0, 6.5, 3.5, 7], "texture": "#0"},
-				"east": {"uv": [0, 6, 3.5, 6.5], "texture": "#0"},
-				"south": {"uv": [3.5, 6, 0, 6.5], "texture": "#0"},
-				"west": {"uv": [0, 6.5, 3.5, 7], "texture": "#0"},
-				"up": {"uv": [10.5, 7, 7, 3.5], "texture": "#0"},
-				"down": {"uv": [0, 0, 3.5, 3.5], "texture": "#0"}
+				"north": {"uv": [3.5, 6, 0, 6.5], "texture": "#0"},
+				"east": {"uv": [0, 6.5, 3.5, 7], "texture": "#0"},
+				"south": {"uv": [0, 6.5, 3.5, 7], "texture": "#0"},
+				"west": {"uv": [0, 6, 3.5, 6.5], "texture": "#0"},
+				"up": {"uv": [7, 3.5, 3.5, 0], "texture": "#0"},
+				"down": {"uv": [3.5, 0, 0, 3.5], "texture": "#0"}
 			}
 		}
 	]

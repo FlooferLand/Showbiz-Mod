@@ -1,6 +1,6 @@
 {
     "required": true,
-    "package": "flooferland.showbiz.backend.mixin",
+    "package": "com.flooferland.showbiz.backend.mixin",
     "compatibilityLevel": "JAVA_21",
     "server": [],
     "injectors": {

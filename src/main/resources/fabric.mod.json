@@ -18,11 +18,11 @@
 	"environment": "*",
 	"accessWidener" : "showbiz.accesswidener",
 	"entrypoints": {
-		"main": ["flooferland.showbiz.ShowbizMod"],
-		"client": ["flooferland.showbiz.client.ShowbizClient"],
-		"server": ["flooferland.showbiz.backend.ShowbizServer"],
-		"fabric-datagen": ["flooferland.showbiz.datagen.ShowbizDataGenerator"],
-		"modmenu": ["flooferland.showbiz.client.ShowbizModMenu"]
+		"main": ["com.flooferland.showbiz.ShowbizMod"],
+		"client": ["com.flooferland.showbiz.client.ShowbizClient"],
+		"server": ["com.flooferland.showbiz.backend.ShowbizServer"],
+		"fabric-datagen": ["com.flooferland.showbiz.datagen.ShowbizDataGenerator"],
+		"modmenu": ["com.flooferland.showbiz.client.ShowbizModMenu"]
 	},
 	"mixins": [
 		"showbiz.server.mixins.json",
