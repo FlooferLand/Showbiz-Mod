@@ -55,7 +55,6 @@ public class InteractPartEntity extends Entity {
         this.name = name;
         this.size = size;
         this.parentBlock = parentBlock;
-        //this.reinitDimensions();
         this.calculateDimensions();
         
         // TODO: Rotate and position based on the direction the block is facing (currently stuck facing west / negative X)

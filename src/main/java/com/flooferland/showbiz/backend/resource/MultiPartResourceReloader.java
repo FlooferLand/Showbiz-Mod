@@ -2,8 +2,8 @@ package com.flooferland.showbiz.backend.resource;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
-import flooferland.chirp.safety.Option;
-import flooferland.chirp.util.ChirpMath;
+import com.flooferland.chirp.safety.Option;
+import com.flooferland.chirp.util.ChirpMath;
 import com.flooferland.showbiz.ShowbizMod;
 import com.flooferland.showbiz.backend.util.MultiPartManager;
 import net.fabricmc.fabric.api.resource.IdentifiableResourceReloadListener;
