@@ -59,23 +59,7 @@ public class ShowSelectorBlockEntity extends BlockEntity implements GeoBlockEnti
     }
 
     public void tick(World world, BlockPos pos, BlockState state) {
-        if (!(world instanceof ClientWorld clientWorld)) return;
-
-        // Throttle world checks
-        if (world.getTime() % (/* Update every */ 5 /* ticks */) != 0) return;
-
-        // Get the local player
-        var client = MinecraftClient.getInstance();
-        if (client.player == null) return;
-        
-        var playerPos = client.player.getPos();
-        double distance = playerPos.squaredDistanceTo(Vec3d.ofCenter(pos));
-        float proximityRadius = maxInteractionReach(client.player);
-        if (distance <= (proximityRadius * proximityRadius)) {
-            multiPart.spawn(clientWorld, pos);
-        } else {
-            multiPart.kill(clientWorld, pos);
-        }
+        multiPart.tick(world, pos, state);
     }
 
     @Override
@@ -83,12 +67,6 @@ public class ShowSelectorBlockEntity extends BlockEntity implements GeoBlockEnti
         super.markRemoved();
         if (!(world instanceof ClientWorld clientWorld)) return;
         multiPart.kill(clientWorld, pos);
-    }
-
-    /// How close the player can be and still interact with the interaction entities
-    public float maxInteractionReach() { return maxInteractionReach(null); }
-    public float maxInteractionReach(@Nullable PlayerEntity player) {
-        return (player != null && player.isCreative()) ? 4f : 2.7f;
     }
 
     @Override
