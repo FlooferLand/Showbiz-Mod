@@ -1,6 +1,6 @@
 package com.flooferland.showbiz.backend.type;
 
-import com.flooferland.showbiz.backend.registry.ModSound;
+import com.flooferland.showbiz.backend.registry.ModSounds;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.math.BlockPos;
@@ -14,7 +14,7 @@ import org.jetbrains.annotations.Nullable;
  * Primarily made for block entities and things that have access to their tick methods.
  */
 public final class AmbientSound {
-    public final ModSound sound;
+    public final ModSounds sound;
     @Nullable public SoundEvent endSound;
     private boolean canPlay = true;
     private boolean lastCanPlay = false;
@@ -22,13 +22,13 @@ public final class AmbientSound {
     private TickTimer timer;
     
     // region | Construction
-    public static AmbientSound of(ModSound sound) {
+    public static AmbientSound of(ModSounds sound) {
         return new AmbientSound(sound, null);
     }
-    public static AmbientSound of(ModSound sound, SoundEvent endSound) {
+    public static AmbientSound of(ModSounds sound, SoundEvent endSound) {
         return new AmbientSound(sound, endSound);
     }
-    private AmbientSound(ModSound sound, @Nullable SoundEvent endSound) {
+    private AmbientSound(ModSounds sound, @Nullable SoundEvent endSound) {
         this.sound = sound;
         this.endSound = endSound;
         this.timer = new TickTimer(sound.lengthInTicks());

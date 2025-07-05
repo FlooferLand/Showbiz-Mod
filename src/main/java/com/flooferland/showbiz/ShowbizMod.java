@@ -30,7 +30,8 @@ public class ShowbizMod implements ModInitializer {
 		ModEntities.registerEntities();
 		ModItems.registerItems();
 		ModCommands.registerCommands();
-		ModSound.registerSounds();
+		ModSounds.registerSounds();
+		ModJukeboxSongs.registerMusic();
 		ModDataComponents.registerDataComponents();
 		ModRecipes.registerRecipes();
 		ModNetworking.register();

@@ -5,7 +5,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonParser;
 import com.flooferland.showbiz.ShowbizMod;
-import com.flooferland.showbiz.backend.registry.ModSound;
+import com.flooferland.showbiz.backend.registry.ModSounds;
 import com.flooferland.showbiz.backend.type.SoundInfo;
 import com.flooferland.showbiz.backend.util.ShowbizEnv;
 import net.fabricmc.fabric.api.resource.IdentifiableResourceReloadListener;
@@ -74,16 +74,16 @@ public class SoundsResourceReloader extends SinglePreparationResourceReloader<Ha
 
     @Override
     protected void apply(HashMap<String, Float> prepared, ResourceManager manager, Profiler profiler) {
-        ModSound.soundsFileData = prepared;
-        for (ModSound sound : ModSound.values()) {
+        ModSounds.soundsFileData = prepared;
+        for (ModSounds sound : ModSounds.values()) {
             // Guards
             if (ShowbizEnv.isDataGenerator()) return;
-            if (ModSound.soundsFileData.isEmpty()) {
+            if (ModSounds.soundsFileData.isEmpty()) {
                 throw new RuntimeException("soundsFileData is empty");
             }
 
             // Retrieving the lengths
-            var length = ModSound.soundsFileData.get(sound.id.getPath());
+            var length = ModSounds.soundsFileData.get(sound.id.getPath());
             if (length == null || length <= 0.0f) {
                 throw new RuntimeException(String.format("Something went wrong retrieving the length from the file data for SoundEvent \"%s\" (length=%s)", sound.id.getPath(), length));
             }
