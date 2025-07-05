@@ -58,6 +58,14 @@ public class ShowSelectorBlockEntity extends BlockEntity implements GeoBlockEnti
         return map;
     }
 
+    @Override
+    public void onInteract(Object k, World world, PlayerEntity player) {
+        if (!(k instanceof Integer i)) return;
+
+        // TODO: Once a show has been selected via a button, switch all other buttons to their `buttonOff` variants
+        player.sendMessage(Text.of("Pressed button " + i), false);
+    }
+
     public void tick(World world, BlockPos pos, BlockState state) {
         multiPart.tick(world, pos, state);
     }
@@ -67,14 +75,6 @@ public class ShowSelectorBlockEntity extends BlockEntity implements GeoBlockEnti
         super.markRemoved();
         if (!(world instanceof ClientWorld clientWorld)) return;
         multiPart.kill(clientWorld, pos);
-    }
-
-    @Override
-    public void onInteract(Object k, World world, PlayerEntity player) {
-        if (!(k instanceof Integer i)) return;
-        
-        // TODO: Once a show has been selected via a button, switch all other buttons to their `buttonOff` variants
-        player.sendMessage(Text.of("Pressed button " + i), false);
     }
     // endregion
 }

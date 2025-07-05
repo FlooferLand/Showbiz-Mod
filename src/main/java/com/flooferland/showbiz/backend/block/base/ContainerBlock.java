@@ -1,5 +1,6 @@
 package com.flooferland.showbiz.backend.block.base;
 
+import com.flooferland.showbiz.backend.blockEntity.base.ContainerBlockEntity;
 import com.flooferland.showbiz.backend.registry.ModBlocksWithEntities;
 import com.flooferland.showbiz.backend.blockEntity.custom.ReelHolderBlockEntity;
 import com.flooferland.showbiz.backend.util.ShowbizUtil;
@@ -36,8 +37,8 @@ public class ContainerBlock extends EntityTiedBlock {
         if (world.isClient) return ActionResult.PASS;
         
         BlockEntity blockEntity = world.getBlockEntity(pos);
-        if (blockEntity instanceof ReelHolderBlockEntity reelHolder) {
-            player.openHandledScreen(reelHolder);
+        if (blockEntity instanceof ContainerBlockEntity entity) {
+            player.openHandledScreen(entity);
             return ActionResult.SUCCESS;
         }
 
