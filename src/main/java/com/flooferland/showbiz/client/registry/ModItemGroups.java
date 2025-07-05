@@ -3,6 +3,7 @@ package com.flooferland.showbiz.client.registry;
 import com.flooferland.showbiz.backend.registry.ModBlocks;
 import com.flooferland.showbiz.backend.registry.ModBlocksWithEntities;
 import com.flooferland.showbiz.backend.registry.ModItems;
+import com.flooferland.showbiz.backend.registry.ModJukeboxSongs;
 import com.flooferland.showbiz.backend.type.AdvancedItemGroup;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
@@ -40,6 +41,7 @@ public class ModItemGroups {
                     entries.add(ModItems.PIZZA_SLICE);
                     entries.add(ModBlocks.PIZZA);
                     entries.add(ModItems.KEY);
+                    entries.add(ModJukeboxSongs.Y2K.item);
                 });
         // endregion
 

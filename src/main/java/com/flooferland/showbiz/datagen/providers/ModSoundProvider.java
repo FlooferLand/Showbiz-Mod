@@ -12,6 +12,8 @@ public class ModSoundProvider extends BaseSoundProvider {
 
     @Override
     public void generateSoundInfo(BaseSoundProvider.SoundBuilder builder) {
+        builder.addSong(ModJukeboxSongs.Y2K);
+
         // region | Mechanical
         builder.add(ModSounds.PNEUMATIC_FIRE, "mechanical/pneumatic_fire");
         builder.add(ModSounds.PNEUMATIC_RELEASE, "mechanical/pneumatic_release");

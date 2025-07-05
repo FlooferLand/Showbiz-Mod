@@ -1,4 +1,12 @@
 {
+  "music_disc.y2k": {
+    "length": 60.0,
+    "sounds": [
+      "showbiz:music_disc_y2k"
+    ],
+    "stream": true,
+    "subtitle": "item.showbiz.music_disc_y2k.desc"
+  },
   "pneumatic_fire": {
     "length": 0.32,
     "sounds": [
