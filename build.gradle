@@ -41,6 +41,9 @@ repositories {
 		// Cloth Config
 		maven { url "https://maven.shedaniel.me/" }
 		maven { url "https://maven.terraformersmc.com/releases/" }
+
+		// Development environment auth
+		maven { url = "https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1" }
 	}
 }
 
@@ -81,7 +84,8 @@ dependencies {
 	//}
 
 	// Other
-	spotbugsPlugins 'com.h3xstream.findsecbugs:findsecbugs-plugin:1.12.0'
+	modRuntimeOnly("me.djtheredstoner:DevAuth-fabric:${dev_auth_version}")
+	spotbugsPlugins "com.h3xstream.findsecbugs:findsecbugs-plugin:1.12.0"
 }
 
 // Injecting gradle.properties into other files
