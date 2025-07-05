@@ -1,6 +1,5 @@
 package com.flooferland.showbiz.backend.item.base;
 
-import com.flooferland.showbiz.client.item.base.BlockEntityItemRenderer;
 import net.minecraft.block.Block;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.item.BlockItem;
@@ -37,7 +36,7 @@ public class BlockEntityItem <T extends BlockEntity & GeoBlockEntity> extends Bl
         consumer.accept(new GeoRenderProvider() {
             @Override
             public @NotNull GeoItemRenderer<?> getGeoItemRenderer() {
-                return new BlockEntityItemRenderer<>(
+                return new GeoItemRenderer<>(
                     new GeoModel<BlockEntityItem<T>>() {
                         @Override
                         public Identifier getModelResource(GeoRenderState geoRenderState) {

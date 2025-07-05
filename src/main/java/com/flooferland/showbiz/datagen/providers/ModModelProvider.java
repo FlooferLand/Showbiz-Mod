@@ -1,5 +1,6 @@
 package com.flooferland.showbiz.datagen.providers;
 
+import com.flooferland.showbiz.backend.registry.ModBlocksWithEntities;
 import com.flooferland.showbiz.backend.registry.ModItems;
 import com.flooferland.showbiz.backend.registry.ModJukeboxSongs;
 import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
@@ -7,6 +8,8 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.minecraft.client.data.BlockStateModelGenerator;
 import net.minecraft.client.data.ItemModelGenerator;
 import net.minecraft.client.data.Models;
+
+// TODO: Generate item files for GeckoLib item models here, so `showbiz/assets/items/` entries get generated automatically
 
 public class ModModelProvider extends FabricModelProvider {
     public ModModelProvider(FabricDataOutput output) {

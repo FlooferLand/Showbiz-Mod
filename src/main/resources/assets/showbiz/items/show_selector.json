@@ -1,0 +1,9 @@
+{
+    "model": {
+        "type": "minecraft:special",
+        "base": "showbiz:item/show_selector",
+        "model": {
+            "type": "geckolib:geckolib"
+        }
+    }
+}

@@ -85,6 +85,7 @@ public final class ShowbizRegistry {
 		// Registering the item
 		BlockEntityItem<TEntity> itemType = new BlockEntityItem<>(itemSettings, block, model);
 		var item = Registry.register(Registries.ITEM, identifier, itemType);
+		//var item = Registry.register(Registries.ITEM, identifier, new Item(new Item.Settings().registryKey(RegistryKey.of(RegistryKeys.ITEM, identifier))));
 
 		// Registering the block
 		Registry.register(Registries.BLOCK, identifier, block);

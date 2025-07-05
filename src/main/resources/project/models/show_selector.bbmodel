@@ -12,7 +12,7 @@
 	"variable_placeholder_buttons": [],
 	"timeline_setups": [],
 	"unhandled_root_fields": {},
-	"activity_tracker": 1298,
+	"activity_tracker": 1366,
 	"geckolib_modid": "showbiz",
 	"geckolib_model_type": "Item",
 	"geckolib_filepath_cache": {
@@ -2873,6 +2873,14 @@
 		"thirdperson_lefthand": {
 			"translation": [0, 0, 1],
 			"scale": [0.55, 0.55, 0.55]
+		},
+		"gui": {
+			"rotation": [-180, 27.5, -180],
+			"translation": [0, -8, 0],
+			"scale": [0.75, 0.75, 0.75]
+		},
+		"fixed": {
+			"translation": [0, -9.75, -2]
 		}
 	}
 }
