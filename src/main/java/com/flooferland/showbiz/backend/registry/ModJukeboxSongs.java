@@ -30,7 +30,7 @@ public enum ModJukeboxSongs {
         this.rawId = Identifier.of(ShowbizMod.MOD_ID, rawId);
         this.itemId = Identifier.of(ShowbizMod.MOD_ID, "music_disc_"+rawId);
         this.soundId = Identifier.of(ShowbizMod.MOD_ID, "music_disc."+rawId);
-        this.song = RegistryKey.of(RegistryKeys.JUKEBOX_SONG, soundId);
+        this.song = RegistryKey.of(RegistryKeys.JUKEBOX_SONG, Identifier.of(ShowbizMod.MOD_ID, rawId));
         this.event = Registry.register(Registries.SOUND_EVENT, soundId, SoundEvent.of(soundId));
         this.item = ShowbizRegistry.registerItem(itemId.getPath(), (settings) -> new Item(settings.jukeboxPlayable(song).maxCount(1)));
     }

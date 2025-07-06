@@ -160,87 +160,83 @@ public abstract class BaseSoundProvider implements DataProvider {
         JsonObject soundsJson = new JsonObject();
 
         generateSoundInfo( // Implementation for "SoundBuilder.add"
-            new SoundBuilder() {
+	        (soundId, soundPaths, subtitleName, soundType, shouldStream) -> {
+	            // Getting some stuff
+	            String modId = dataOutput.getModId();
+	            String subtitleKey =
+	                (soundType == SoundType.Sound)
+	                    ? (subtitleName != null)
+	                        ? String.format("subtitle.%s.%s", modId, subtitleName)
+	                        : String.format("subtitle.%s.%s", modId, soundId.getPath())
+	                    : String.format("item.%s.%s.desc", modId, soundId.getPath().replace(".", "_"))
+	            ;
 
-                @Override
-                public void add(Identifier soundId, List<String> soundPaths, @Nullable String subtitleName, SoundType soundType, boolean shouldStream) {
-                    // Getting some stuff
-                    String modId = dataOutput.getModId();
-                    String subtitleKey =
-                        (soundType == SoundType.Sound)
-                            ? (subtitleName != null)
-                                ? String.format("subtitle.%s.%s", modId, subtitleName)
-                                : String.format("subtitle.%s.%s", modId, soundId.getPath())
-                            : String.format("item.%s.%s.desc", modId, soundId.getPath().replace(".", "_"))
-                    ;
+	            // TODO: Make it throw a warning if the subtitle path and the file name aren't the same
+	            // TODO: Add a easy-to-read "path not found" error and fail without crashing/stopping data generation
 
-                    // TODO: Make it throw a warning if the subtitle path and the file name aren't the same
-                    // TODO: Add a easy-to-read "path not found" error and fail without crashing/stopping data generation
+	            // Safety check
+	            for (String soundPath : soundPaths) {
+	                soundPath = soundPath.endsWith(".ogg") ? soundPath : (soundPath + ".ogg");
+	                String path = getSoundsDirectory().resolve(soundPath).toString();
+	                if (!Files.exists(Path.of(path)))
+	                    throw new ShowbizExceptions.RuntimeNoTrace(
+	                        String.format("Sound at relative path \"%s\" does not exist! - Full path: \"%s\"", soundPath, path)
+	                    );
+	            }
 
-                    // Safety check
-                    for (String soundPath : soundPaths) {
-                        soundPath = soundPath.endsWith(".ogg") ? soundPath : (soundPath + ".ogg");
-                        String path = getSoundsDirectory().resolve(soundPath).toString();
-                        if (!Files.exists(Path.of(path)))
-                            throw new ShowbizExceptions.RuntimeNoTrace(
-                                String.format("Sound at relative path \"%s\" does not exist! - Full path: \"%s\"", soundPath, path)
-                            );
-                    }
+	            // region | Getting the length of the audio
+	            float durationInSeconds;
+	            {
+	                // Getting the path to the audio
+	                String audioPath = soundPaths.getFirst() + ".ogg";
+	                String path = getSoundsDirectory().resolve(audioPath).toString();
 
-                    // region | Getting the length of the audio
-                    float durationInSeconds;
-                    {
-                        // Getting the path to the audio
-                        String audioPath = soundPaths.getFirst() + ".ogg";
-                        String path = getSoundsDirectory().resolve(audioPath).toString();
+	                // Reading the length of the audio
+	                durationInSeconds = ShowbizAudio.getOggAudioLength(path);
+	            }
+	            // endregion
 
-                        // Reading the length of the audio
-                        durationInSeconds = ShowbizAudio.getOggAudioLength(path);
-                    }
-                    // endregion
+	            // region | Constructing sounds.json data
+	            {
+	                // Top-level JSON
+	                JsonObject data = new JsonObject();
+	                data.add("subtitle", new JsonPrimitive(subtitleKey));
+	                data.add("stream", new JsonPrimitive(shouldStream));
+	                data.add("length", new JsonPrimitive(durationInSeconds));
 
-                    // region | Constructing sounds.json data
-                    {
-                        // Top-level JSON
-                        JsonObject data = new JsonObject();
-                        data.add("subtitle", new JsonPrimitive(subtitleKey));
-                        data.add("stream", new JsonPrimitive(shouldStream));
-                        data.add("length", new JsonPrimitive(durationInSeconds));
+	                // Adding the randomised audio clips
+	                JsonArray variations = new JsonArray();
+	                for (String path : soundPaths) {
+	                    variations.add(new JsonPrimitive(modId + ":" + path));
+	                }
+	                data.add("sounds", variations);
 
-                        // Adding the randomised audio clips
-                        JsonArray variations = new JsonArray();
-                        for (String path : soundPaths) {
-                            variations.add(new JsonPrimitive(modId + ":" + path));
-                        }
-                        data.add("sounds", variations);
+	                // Adding the data at the sound ID
+	                soundsJson.add(soundId.getPath(), data);
+	            }
+	            // endregion
 
-                        // Adding the data at the sound ID
-                        soundsJson.add(soundId.getPath(), data);
-                    }
-                    // endregion
+	            // region | Constructing music disc data file, if necessary
+	            if (soundType == SoundType.MusicDisc) {
+	                var rawId = soundId.getPath().toString().split("\\.")[1];
 
-                    // region | Constructing music disc data file, if necessary
-                    if (soundType == SoundType.MusicDisc) {
-                        var rawId = soundId.getPath().toString().split("\\.")[1];
+	                var songJson = new JsonObject();
+	                songJson.add("comparator_output", new JsonPrimitive(15));
+	                songJson.add("length_in_seconds", new JsonPrimitive(durationInSeconds));
+	                songJson.add("sound_event", new JsonPrimitive(soundId.toString()));
 
-                        var songJson = new JsonObject();
-                        songJson.add("comparator_output", new JsonPrimitive(15));
-                        songJson.add("length_in_seconds", new JsonPrimitive(durationInSeconds));
-                        songJson.add("sound_event", new JsonPrimitive(soundId.toString()));
+	                // Adding the description
+	                var description = new JsonObject();
+	                description.add("translate", new JsonPrimitive(subtitleKey));
+	                songJson.add("description", description);
 
-                        // Adding the description
-                        var description = new JsonObject();
-                        description.add("translate", new JsonPrimitive(subtitleKey));
-                        songJson.add("description", description);
-
-                        // Writing the file
-                        futures.add(
-                            DataProvider.writeToPath(writer, songJson, getJukeboxSongDirectory().resolve(rawId+".json"))
-                        );
-                    }
-                    // endregion
-                }
-            }
+	                // Writing the file
+	                futures.add(
+	                    DataProvider.writeToPath(writer, songJson, getJukeboxSongDirectory().resolve(rawId+".json"))
+	                );
+	            }
+	            // endregion
+	        }
         );
 
         // DEBUG

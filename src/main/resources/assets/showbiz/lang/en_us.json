@@ -11,10 +11,10 @@
     "item.showbiz.magnetic_tape": "Magnetic Tape",
     "item.showbiz.key": "Key",
 
-    "item.showbiz.music_disc_y2k": "Y2K",
-    "item.showbiz.music_disc_y2k.desc": "FlooferLand w/ Monsterwaill - Y2K",
+    "item.showbiz.pizza": "Pizza Box",
+    "item.showbiz.reel_holder": "Reel Holder",
+    "item.showbiz.show_selector": "Show Selector",
 
-    "block.showbiz.pizza": "Pizza Box",
-    "block.showbiz.reel_holder": "Reel Holder",
-    "block.showbiz.show_selector": "Show Selector"
+    "item.showbiz.music_disc_y2k": "Y2K",
+    "item.showbiz.music_disc_y2k.desc": "FlooferLand - Y2K"
 }
