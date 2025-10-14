@@ -1,9 +1,12 @@
 <img src="./src/main/resources/assets/showbiz/textures/animated_logo.gif" alt="Showbiz Mod" height="200px" />
 
+
 ![Created at](https://img.shields.io/github/created-at/FlooferLand/Showbiz-Mod?style=plastic&logo=github&link=https://github.com/FlooferLand/Showbiz-Mod)
 ![Code size in bytes](https://img.shields.io/github/languages/code-size/FlooferLand/Showbiz-Mod?style=plastic&color=brightgreen&link=https://github.com/FlooferLand/Showbiz-Mod)
 ![Issue tracker](https://img.shields.io/github/issues/FlooferLand/Showbiz-Mod?style=plastic&link=https://github.com/FlooferLand/Showbiz-Mod/issues)
 ![Lines of code](https://img.shields.io/tokei/lines/github/FlooferLand/Showbiz-Mod?style=plastic&link=https://github.com/FlooferLand/Showbiz-Mod)
+
+### **NOTE**: This mod has been rewriten and moved to [FlooferLand/showbiz](https://github.com/FlooferLand/showbiz)
 
 A fan-made Minecraft mod focused around [The Rock-afire Explosion](https://www.youtube.com/watch?v=8SeSavNd9_c&list=PLB8A625C54121DA04)
 
@@ -23,3 +26,4 @@ Unlike a proper simulation engine, this mod is pretty simple by design.
 2. Run `.\gradlew genSources` and select the generated mapping
    - Optionally bookmark `External Libraries/net.minecraft:minecraft-merged` for convenience
 - Add `DATAGEN=1` as an environment variable to your Data Generation profile
+
